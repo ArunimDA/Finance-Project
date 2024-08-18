@@ -12,7 +12,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.124.1052.0 (23.12)"
+        "value": "2.131.1203.0 (24.07)"
       },
       {
         "name": "PBI_ProTooling",
@@ -25,7 +25,6 @@
         "name": "en-US",
         "linguisticMetadata": {
           "content": {
-            "DynamicImprovement": "HighConfidence",
             "Language": "en-US",
             "Version": "1.0.0"
           },
@@ -52,13 +51,13 @@
           }
         ],
         "expression": [
-          "let",
-          "    Source = Csv.Document(File.Contents(\"C:\\Users\\Amlan\\Desktop\\Data\\AC.csv\"),[Delimiter=\",\", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
-          "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}, {\"Column2\", type text}}),",
-          "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Changed Type\", [PromoteAllScalars=true]),",
-          "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Account Categories\", type text}, {\"ACT ID\", type text}}),",
-          "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type1\",{\"Account Categories\", \"ACT ID\"})",
-          "in",
+          "let\r",
+          "    Source = Csv.Document(File.Contents(\"C:\\Users\\Amlan\\Desktop\\Data\\AC.csv\"),[Delimiter=\",\", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),\r",
+          "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}, {\"Column2\", type text}}),\r",
+          "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Changed Type\", [PromoteAllScalars=true]),\r",
+          "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Account Categories\", type text}, {\"ACT ID\", type text}}),\r",
+          "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type1\",{\"Account Categories\", \"ACT ID\"})\r",
+          "in\r",
           "    #\"Removed Columns\""
         ],
         "kind": "m",
@@ -136,7 +135,6 @@
             ],
             "dataCategory": "PaddedDateTableDates",
             "dataType": "dateTime",
-            "formatString": "General Date",
             "isHidden": true,
             "isNameInferred": true,
             "lineageTag": "27568a21-3a7f-49c6-92bd-135c40ed096b",
@@ -159,7 +157,6 @@
             "dataCategory": "Years",
             "dataType": "int64",
             "expression": "YEAR([Date])",
-            "formatString": "0",
             "isHidden": true,
             "lineageTag": "13401607-e72b-4c7c-a4b4-283fee2959e7",
             "summarizeBy": "none",
@@ -180,7 +177,6 @@
             "dataCategory": "MonthOfYear",
             "dataType": "int64",
             "expression": "MONTH([Date])",
-            "formatString": "0",
             "isHidden": true,
             "lineageTag": "a2f310ab-4693-4daa-bd47-c755df0383d1",
             "summarizeBy": "none",
@@ -222,7 +218,6 @@
             "dataCategory": "QuarterOfYear",
             "dataType": "int64",
             "expression": "INT(([MonthNo] + 2) / 3)",
-            "formatString": "0",
             "isHidden": true,
             "lineageTag": "765516c8-4a36-4363-9446-8ffd16b7e6f5",
             "summarizeBy": "none",
@@ -264,7 +259,6 @@
             "dataCategory": "DayOfMonth",
             "dataType": "int64",
             "expression": "DAY([Date])",
-            "formatString": "0",
             "isHidden": true,
             "lineageTag": "70ab9782-4bbe-40bd-baa9-c056868b46e5",
             "summarizeBy": "none",
@@ -664,7 +658,6 @@
             ],
             "dataCategory": "PaddedDateTableDates",
             "dataType": "dateTime",
-            "formatString": "General Date",
             "isHidden": true,
             "isNameInferred": true,
             "lineageTag": "c58fa388-7c65-47ed-b3ed-53987fba594a",
@@ -687,7 +680,6 @@
             "dataCategory": "Years",
             "dataType": "int64",
             "expression": "YEAR([Date])",
-            "formatString": "0",
             "isHidden": true,
             "lineageTag": "5ee58684-0bad-43ba-aea4-d79965323b62",
             "summarizeBy": "none",
@@ -708,7 +700,6 @@
             "dataCategory": "MonthOfYear",
             "dataType": "int64",
             "expression": "MONTH([Date])",
-            "formatString": "0",
             "isHidden": true,
             "lineageTag": "2bfb71b4-4df9-4505-9f04-e076ebea62a5",
             "summarizeBy": "none",
@@ -750,7 +741,6 @@
             "dataCategory": "QuarterOfYear",
             "dataType": "int64",
             "expression": "INT(([MonthNo] + 2) / 3)",
-            "formatString": "0",
             "isHidden": true,
             "lineageTag": "f044054c-3f7a-4436-a315-9194dd669833",
             "summarizeBy": "none",
@@ -792,7 +782,6 @@
             "dataCategory": "DayOfMonth",
             "dataType": "int64",
             "expression": "DAY([Date])",
-            "formatString": "0",
             "isHidden": true,
             "lineageTag": "92c19a19-b413-4115-b985-4442b8cbd901",
             "summarizeBy": "none",
