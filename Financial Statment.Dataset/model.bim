@@ -334,6 +334,45 @@
           }
         ],
         "lineageTag": "12f7527c-2749-4318-9a01-9d94c1881cea",
+        "measures": [
+          {
+            "name": "Total Balance",
+            "expression": "SUM(TB[Balance])",
+            "formatString": "0",
+            "lineageTag": "a061e28a-8d09-46e6-b554-334eba1f0d6d"
+          },
+          {
+            "name": "Total Revenue",
+            "expression": "CALCULATE(SUM(TB[Balance]),FILTER(TB,TB[Account Categories]=\"Revenue\"))",
+            "formatString": "0",
+            "lineageTag": "889bcdbe-dab2-43b0-bde4-d1ec407c2285"
+          },
+          {
+            "name": "Total Expense",
+            "expression": "CALCULATE(SUM(TB[Balance]),FILTER(TB,TB[Account Categories]=\"Expense\"))",
+            "formatString": "0",
+            "lineageTag": "ee985a27-9c1f-4555-83a6-12cdbc656526"
+          },
+          {
+            "name": "Net Profit / Loss",
+            "expression": "[Total Revenue] - [Total Expense]",
+            "formatString": "0.00",
+            "lineageTag": "5b2e25d3-ce6a-4e26-a47a-ef1db72ed66b"
+          },
+          {
+            "name": "Profit Loss Variance",
+            "expression": [
+              "",
+              "VAR Uparrow = UNICHAR(129137)",
+              "VAR Downarrow = UNICHAR(129139)",
+              "",
+              "RETURN",
+              "    IF([Net Profit / Loss] > 0,Uparrow,Downarrow)",
+              ""
+            ],
+            "lineageTag": "70ca83ac-a616-46ae-bfdd-df9b93d8bd3f"
+          }
+        ],
         "partitions": [
           {
             "name": "Amlan",
@@ -436,7 +475,7 @@
               }
             ],
             "dataType": "dateTime",
-            "formatString": "Long Date",
+            "formatString": "Short Date",
             "lineageTag": "edb08008-2afc-4456-85f0-a9da589ca34c",
             "sourceColumn": "Date",
             "summarizeBy": "none",
@@ -977,11 +1016,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          }
-        ],
-        "changedProperties": [
-          {
-            "property": "Name"
           }
         ],
         "columns": [
