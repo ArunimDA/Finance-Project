@@ -69,21 +69,6 @@
         "toTable": "AC"
       },
       {
-        "name": "AutoDetected_1845fc25-3f99-4d92-a985-2b450fc615d0",
-        "fromColumn": "SA ID",
-        "fromTable": "TB",
-        "toColumn": "SA ID",
-        "toTable": "SAC"
-      },
-      {
-        "name": "AutoDetected_181d66b9-548e-49dc-83e2-aeaa7730f6c2",
-        "fromColumn": "SA ID",
-        "fromTable": "JR",
-        "isActive": false,
-        "toColumn": "SA ID",
-        "toTable": "SAC"
-      },
-      {
         "name": "AutoDetected_b4c001cc-3f9e-4fb9-9c06-8ceabad795eb",
         "fromColumn": "FS ID",
         "fromTable": "TB",
@@ -307,7 +292,7 @@
         ]
       },
       {
-        "name": "Amlan",
+        "name": "Amlan Measure",
         "annotations": [
           {
             "name": "PBI_Id",
@@ -336,7 +321,7 @@
         "lineageTag": "12f7527c-2749-4318-9a01-9d94c1881cea",
         "partitions": [
           {
-            "name": "Amlan",
+            "name": "Amlan Measure",
             "mode": "import",
             "source": {
               "expression": "Row(\"Column\", BLANK())",
