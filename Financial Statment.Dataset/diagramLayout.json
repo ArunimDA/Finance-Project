@@ -4,28 +4,18 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 0,
-        "y": 74.264753981949042
+        "x": 122,
+        "y": 0
       },
       "nodes": [
         {
           "location": {
-<<<<<<< HEAD
             "x": 1136,
             "y": 100
           },
           "nodeIndex": "Amlan",
           "size": {
             "height": 200,
-=======
-            "x": 537.33322300000032,
-            "y": 487.17927500000047
-          },
-          "nodeIndex": "TB",
-          "nodeLineageTag": "c68c2dda-4495-41fd-b362-15e125489905",
-          "size": {
-            "height": 300,
->>>>>>> 14988c307d8083e00498ecdb847415b045d4739e
             "width": 234
           },
           "zIndex": 0
@@ -44,11 +34,10 @@
         },
         {
           "location": {
-            "x": 0,
-            "y": 131.11358443553425
+            "x": 1136,
+            "y": 0
           },
           "nodeIndex": "JR",
-          "nodeLineageTag": "abd19040-da3a-4b83-ab99-b0c329457115",
           "size": {
             "height": 300,
             "width": 234
@@ -61,20 +50,6 @@
             "y": 86
           },
           "nodeIndex": "FS",
-          "nodeLineageTag": "f88f0929-8074-479b-b77f-8929649fb6e2",
-          "size": {
-            "height": 267.04890107258541,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 572.50116521271,
-            "y": 0
-          },
-          "nodeIndex": "AC",
-          "nodeLineageTag": "8251ad68-695e-49a5-9505-b7717c6c5a08",
           "size": {
             "height": 128,
             "width": 234
@@ -83,13 +58,12 @@
         },
         {
           "location": {
-            "x": 1330.3854966686679,
-            "y": 586.29552731284525
+            "x": 1136,
+            "y": 86
           },
-          "nodeIndex": "Amlan Measure",
-          "nodeLineageTag": "12f7527c-2749-4318-9a01-9d94c1881cea",
+          "nodeIndex": "AC",
           "size": {
-            "height": 200,
+            "height": 128,
             "width": 234
           },
           "zIndex": 0
@@ -108,7 +82,7 @@
         }
       ],
       "name": "All tables",
-      "zoomValue": 63.287087723233995,
+      "zoomValue": 100,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,
