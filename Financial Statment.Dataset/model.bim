@@ -4,7 +4,7 @@
     "annotations": [
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"AC\",\"TB\",\"SAC\",\"JR\",\"FS\",\"AC1\"]"
+        "value": "[\"TB\",\"SAC\",\"JR\",\"FS\",\"AC\"]"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -37,33 +37,6 @@
       "returnErrorValuesAsNull": true
     },
     "defaultPowerBIDataSourceVersion": "powerBI_V3",
-    "expressions": [
-      {
-        "name": "AC",
-        "annotations": [
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
-          {
-            "name": "PBI_ResultType",
-            "value": "Table"
-          }
-        ],
-        "expression": [
-          "let\r",
-          "    Source = Csv.Document(File.Contents(\"C:\\Users\\Amlan\\Desktop\\Data\\AC.csv\"),[Delimiter=\",\", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),\r",
-          "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}, {\"Column2\", type text}}),\r",
-          "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Changed Type\", [PromoteAllScalars=true]),\r",
-          "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Account Categories\", type text}, {\"ACT ID\", type text}}),\r",
-          "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type1\",{\"Account Categories\", \"ACT ID\"})\r",
-          "in\r",
-          "    #\"Removed Columns\""
-        ],
-        "kind": "m",
-        "lineageTag": "5b65079a-7c0d-4442-b3f8-aab8e7a8a8c4"
-      }
-    ],
     "relationships": [
       {
         "name": "95d52218-dc9e-4419-99e1-4011efa95e5a",
@@ -79,6 +52,51 @@
         "fromTable": "JR",
         "toColumn": "Account ID",
         "toTable": "TB"
+      },
+      {
+        "name": "AutoDetected_513cd20b-902c-42cb-93b8-9b3f0a306296",
+        "fromColumn": "ACT ID",
+        "fromTable": "TB",
+        "toColumn": "ACT ID",
+        "toTable": "AC"
+      },
+      {
+        "name": "AutoDetected_28cb9c10-815c-4cde-9846-f9fae58ccb74",
+        "fromColumn": "ACT ID",
+        "fromTable": "JR",
+        "isActive": false,
+        "toColumn": "ACT ID",
+        "toTable": "AC"
+      },
+      {
+        "name": "AutoDetected_1845fc25-3f99-4d92-a985-2b450fc615d0",
+        "fromColumn": "SA ID",
+        "fromTable": "TB",
+        "toColumn": "SA ID",
+        "toTable": "SAC"
+      },
+      {
+        "name": "AutoDetected_181d66b9-548e-49dc-83e2-aeaa7730f6c2",
+        "fromColumn": "SA ID",
+        "fromTable": "JR",
+        "isActive": false,
+        "toColumn": "SA ID",
+        "toTable": "SAC"
+      },
+      {
+        "name": "AutoDetected_b4c001cc-3f9e-4fb9-9c06-8ceabad795eb",
+        "fromColumn": "FS ID",
+        "fromTable": "TB",
+        "toColumn": "FS ID",
+        "toTable": "FS"
+      },
+      {
+        "name": "AutoDetected_23ae05ae-a759-4e3b-9be4-60237ca0190f",
+        "fromColumn": "FS ID",
+        "fromTable": "JR",
+        "isActive": false,
+        "toColumn": "FS ID",
+        "toTable": "FS"
       }
     ],
     "sourceQueryCulture": "en-US",
@@ -333,11 +351,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          }
-        ],
-        "changedProperties": [
+          },
           {
-            "property": "Name"
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -375,10 +392,11 @@
                 "value": "Automatic"
               }
             ],
-            "dataType": "string",
+            "dataType": "int64",
+            "formatString": "0",
             "lineageTag": "ad8bfd62-ef42-4abe-8769-24e13fe3119b",
             "sourceColumn": "Dr Amount",
-            "summarizeBy": "none"
+            "summarizeBy": "sum"
           },
           {
             "name": "Cr Amount",
@@ -388,10 +406,11 @@
                 "value": "Automatic"
               }
             ],
-            "dataType": "string",
+            "dataType": "int64",
+            "formatString": "0",
             "lineageTag": "2a07b41d-314b-4a97-a560-5d76868bd42b",
             "sourceColumn": "Cr Amount",
-            "summarizeBy": "none"
+            "summarizeBy": "sum"
           },
           {
             "name": "Net Balance",
@@ -405,7 +424,7 @@
             "formatString": "0",
             "lineageTag": "5c10edb8-a380-42e8-8390-4926330ff87c",
             "sourceColumn": "Net Balance",
-            "summarizeBy": "none"
+            "summarizeBy": "sum"
           },
           {
             "name": "Balance Type",
@@ -432,7 +451,7 @@
             "formatString": "0",
             "lineageTag": "bcc4d500-df85-4872-bfd1-a6175d1c4ca0",
             "sourceColumn": "Balance",
-            "summarizeBy": "none"
+            "summarizeBy": "sum"
           },
           {
             "name": "ACT ID",
@@ -523,9 +542,11 @@
                 "let",
                 "    Source = Csv.Document(Web.Contents(\"https://drive.google.com/uc?export=download&id=1kaj-59YqWlk4iRZhaUdiO0ndD0oTBaYv\"),[Delimiter=\",\", Columns=13, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Account ID\", type text}, {\"Account Name\", type text}, {\"Dr Amount\", type text}, {\"Cr Amount\", type text}, {\"Net Balance\", Int64.Type}, {\"Balance Type\", type text}, {\"Balance\", Int64.Type}, {\"ACT ID\", type text}, {\"SA ID\", type text}, {\"FS ID\", type text}, {\"Account Categories\", type text}, {\"Sub Account\", type text}, {\"Financial Statements\", type text}})",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Account ID\", type text}, {\"Account Name\", type text}, {\"Dr Amount\", type text}, {\"Cr Amount\", type text}, {\"Net Balance\", Int64.Type}, {\"Balance Type\", type text}, {\"Balance\", Int64.Type}, {\"ACT ID\", type text}, {\"SA ID\", type text}, {\"FS ID\", type text}, {\"Account Categories\", type text}, {\"Sub Account\", type text}, {\"Financial Statements\", type text}}),",
+                "    #\"Replaced Value\" = Table.ReplaceValue(#\"Changed Type\",\"-\",\"0\",Replacer.ReplaceText,{\"Dr Amount\", \"Cr Amount\"}),",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Replaced Value\",{{\"Dr Amount\", Int64.Type}, {\"Cr Amount\", Int64.Type}})",
                 "in",
-                "    #\"Changed Type\""
+                "    #\"Changed Type1\""
               ],
               "type": "m"
             }
@@ -538,16 +559,15 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          }
-        ],
-        "changedProperties": [
+          },
           {
-            "property": "Name"
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
           {
-            "name": "Column1",
+            "name": "Sub Account",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
@@ -555,12 +575,12 @@
               }
             ],
             "dataType": "string",
-            "lineageTag": "d0977b3b-b7a2-4c9c-bbbf-1b8c5d7896b7",
-            "sourceColumn": "Column1",
+            "lineageTag": "473f1a23-5c38-4da9-abab-9fc6080a59ac",
+            "sourceColumn": "Sub Account",
             "summarizeBy": "none"
           },
           {
-            "name": "Column2",
+            "name": "SA ID",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
@@ -568,8 +588,8 @@
               }
             ],
             "dataType": "string",
-            "lineageTag": "6216f572-37b8-4f30-9cc9-95f098040d1c",
-            "sourceColumn": "Column2",
+            "lineageTag": "04d05a0d-dd2b-4384-a5ad-d5e869f2a95f",
+            "sourceColumn": "SA ID",
             "summarizeBy": "none"
           }
         ],
@@ -582,9 +602,11 @@
               "expression": [
                 "let",
                 "    Source = Csv.Document(Web.Contents(\" https://drive.google.com/uc?export=download&id=1Aq8j52GBzqpjmTRtZdKTkQnbRZF9R_E8\"),[Delimiter=\",\", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}, {\"Column2\", type text}})",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}, {\"Column2\", type text}}),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Changed Type\", [PromoteAllScalars=true]),",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Sub Account\", type text}, {\"SA ID\", type text}})",
                 "in",
-                "    #\"Changed Type\""
+                "    #\"Changed Type1\""
               ],
               "type": "m"
             }
@@ -597,11 +619,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          }
-        ],
-        "changedProperties": [
+          },
           {
-            "property": "Name"
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -681,7 +702,7 @@
                 "value": "Automatic"
               }
             ],
-            "dataType": "int64",
+            "dataType": "double",
             "formatString": "0",
             "lineageTag": "d9ea5e26-8596-4398-b053-63153f92a9bd",
             "sourceColumn": "Dr Amount",
@@ -695,7 +716,7 @@
                 "value": "Automatic"
               }
             ],
-            "dataType": "int64",
+            "dataType": "double",
             "formatString": "0",
             "lineageTag": "89ddc322-e4b7-450d-8292-6a9224fb6dcf",
             "sourceColumn": "Cr Amount",
@@ -748,7 +769,7 @@
                 "value": "Automatic"
               }
             ],
-            "dataType": "int64",
+            "dataType": "double",
             "formatString": "0",
             "lineageTag": "74f957f6-3650-4d0e-81e7-dc158d034d9f",
             "sourceColumn": "Cash flow Amount",
@@ -843,9 +864,10 @@
                 "let",
                 "    Source = Csv.Document(Web.Contents(\"https://drive.google.com/uc?export=download&id=1muzBTVjMEq2UeiAlJJaukjfNBAGYfCFB\"),[Delimiter=\",\", Columns=16, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Journal ID\", type text}, {\"Date\", type date}, {\"Account Name\", type text}, {\"Account ID\", type text}, {\"Dr Amount\", Int64.Type}, {\"Cr Amount\", Int64.Type}, {\"Details\", type text}, {\"Cash flow statement operator\", type text}, {\"Cash flow Status\", type text}, {\"Cash flow Amount\", Int64.Type}, {\"ACT ID\", type text}, {\"SA ID\", type text}, {\"FS ID\", type text}, {\"Account Categories\", type text}, {\"Sub Account\", type text}, {\"Financial Statements\", type text}})",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Journal ID\", type text}, {\"Date\", type date}, {\"Account Name\", type text}, {\"Account ID\", type text}, {\"Dr Amount\", Int64.Type}, {\"Cr Amount\", Int64.Type}, {\"Details\", type text}, {\"Cash flow statement operator\", type text}, {\"Cash flow Status\", type text}, {\"Cash flow Amount\", Int64.Type}, {\"ACT ID\", type text}, {\"SA ID\", type text}, {\"FS ID\", type text}, {\"Account Categories\", type text}, {\"Sub Account\", type text}, {\"Financial Statements\", type text}}),",
+                "    #\"Replaced Value\" = Table.ReplaceValue(#\"Changed Type\",null,0,Replacer.ReplaceValue,{\"Journal ID\", \"Dr Amount\", \"Cr Amount\", \"Cash flow Amount\"})",
                 "in",
-                "    #\"Changed Type\""
+                "    #\"Replaced Value\""
               ],
               "type": "m"
             }
@@ -1059,16 +1081,15 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          }
-        ],
-        "changedProperties": [
+          },
           {
-            "property": "Name"
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
           {
-            "name": "Column1",
+            "name": "Financial Statements",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
@@ -1076,12 +1097,12 @@
               }
             ],
             "dataType": "string",
-            "lineageTag": "43112bf2-d3b1-46d4-aeaf-e737020396bf",
-            "sourceColumn": "Column1",
+            "lineageTag": "7965ca3c-bf02-4ebc-9254-34bde914ee92",
+            "sourceColumn": "Financial Statements",
             "summarizeBy": "none"
           },
           {
-            "name": "Column2",
+            "name": "FS ID",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
@@ -1089,8 +1110,8 @@
               }
             ],
             "dataType": "string",
-            "lineageTag": "6de8dfcc-a31d-4e61-b3fe-fd5be770c623",
-            "sourceColumn": "Column2",
+            "lineageTag": "3b9ce341-3f1e-4810-9628-2154a928bf5d",
+            "sourceColumn": "FS ID",
             "summarizeBy": "none"
           }
         ],
@@ -1103,9 +1124,11 @@
               "expression": [
                 "let",
                 "    Source = Csv.Document(Web.Contents(\"https://drive.google.com/uc?export=download&id=1Jt_zDhxd6l5jsXbtHF3mrwiqjpDtLl8M\"),[Delimiter=\",\", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}, {\"Column2\", type text}})",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}, {\"Column2\", type text}}),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Changed Type\", [PromoteAllScalars=true]),",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Financial Statements\", type text}, {\"FS ID\", type text}})",
                 "in",
-                "    #\"Changed Type\""
+                "    #\"Changed Type1\""
               ],
               "type": "m"
             }
@@ -1113,21 +1136,20 @@
         ]
       },
       {
-        "name": "AC1",
+        "name": "AC",
         "annotations": [
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          }
-        ],
-        "changedProperties": [
+          },
           {
-            "property": "Name"
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
           {
-            "name": "Column1",
+            "name": "Account Categories",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
@@ -1135,12 +1157,12 @@
               }
             ],
             "dataType": "string",
-            "lineageTag": "fb430708-7ee0-46c8-b910-2378d960ba4f",
-            "sourceColumn": "Column1",
+            "lineageTag": "adca4cf3-7f35-4a49-b443-f0328e603d52",
+            "sourceColumn": "Account Categories",
             "summarizeBy": "none"
           },
           {
-            "name": "Column2",
+            "name": "ACT ID",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
@@ -1148,23 +1170,25 @@
               }
             ],
             "dataType": "string",
-            "lineageTag": "5ba7bd1c-32d6-4fe5-8302-ccf656cb1b1f",
-            "sourceColumn": "Column2",
+            "lineageTag": "02e35365-57ba-424b-8ef4-88d7e625744e",
+            "sourceColumn": "ACT ID",
             "summarizeBy": "none"
           }
         ],
         "lineageTag": "8251ad68-695e-49a5-9505-b7717c6c5a08",
         "partitions": [
           {
-            "name": "AC1",
+            "name": "AC",
             "mode": "import",
             "source": {
               "expression": [
                 "let",
                 "    Source = Csv.Document(Web.Contents(\"https://drive.google.com/uc?export=download&id=1A3Q8n4q8aFdxMavB4gum-sb65yEuWE3u\"),[Delimiter=\",\", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}, {\"Column2\", type text}})",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}, {\"Column2\", type text}}),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Changed Type\", [PromoteAllScalars=true]),",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Account Categories\", type text}, {\"ACT ID\", type text}})",
                 "in",
-                "    #\"Changed Type\""
+                "    #\"Changed Type1\""
               ],
               "type": "m"
             }
