@@ -49,11 +49,11 @@
       "name": "ReportSection",
       "visualContainers": [
         {
-          "config": "{\"name\":\"9c78f66388de5c2f94bb\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10,\"y\":0,\"width\":280,\"height\":280,\"z\":0,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"TB.Account Name\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t\",\"Entity\":\"TB\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"Account Name\"},\"Name\":\"TB.Account Name\",\"NativeReferenceName\":\"Account Name\"}]},\"drillFilterOtherVisuals\":true}}",
+          "config": "{\"name\":\"9c78f66388de5c2f94bb\",\"layouts\":[{\"id\":0,\"position\":{\"x\":15.118110236220472,\"y\":0,\"z\":0,\"width\":280.5249343832021,\"height\":280.5249343832021,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"TB.Account Name\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t\",\"Entity\":\"TB\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"Account Name\"},\"Name\":\"TB.Account Name\",\"NativeReferenceName\":\"Account Name\"}]},\"drillFilterOtherVisuals\":true}}",
           "filters": "[]",
-          "height": 280.00,
-          "width": 280.00,
-          "x": 10.00,
+          "height": 280.52,
+          "width": 280.52,
+          "x": 15.12,
           "y": 0.00,
           "z": 0.00
         }
