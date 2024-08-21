@@ -84,19 +84,6 @@
             "width": 234
           },
           "zIndex": 4
-        },
-        {
-          "location": {
-            "x": 532.5131014212767,
-            "y": 823.76977474817386
-          },
-          "nodeIndex": "Final TB",
-          "nodeLineageTag": "05613caf-4d67-4fb0-be8a-174be5200092",
-          "size": {
-            "height": 300,
-            "width": 234
-          },
-          "zIndex": 11
         }
       ],
       "name": "All tables",
