@@ -12,7 +12,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.131.1203.0 (24.07)"
+        "value": "2.132.908.0 (24.08)"
       },
       {
         "name": "PBI_ProTooling",
@@ -844,7 +844,7 @@
                 "    #\"Removed Columns\" = Table.RemoveColumns(#\"Reordered Columns\",{\"New\"}),",
                 "    #\"Added Custom\" = Table.AddColumn(#\"Removed Columns\", \"New\", each if [Account Name] = \"Cash at bank\" then \"Cash at Bank\" else",
                 "if [Account Name] = \"Utility expense\" then \"Utility Expense\" else [Account Name]),",
-                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Added Custom\",{{\"Account Name\", \"Account Name 2\"}})",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Added Custom\",{{\"Account Name\", \"Account Name 2\"}, {\"New\", \"New\"}})",
                 "in",
                 "    #\"Renamed Columns\""
               ],
@@ -2040,6 +2040,36 @@
             "lineageTag": "2901850a-e528-4490-bbee-d601487550f4",
             "sourceColumn": "Account ID",
             "summarizeBy": "none"
+          },
+          {
+            "name": "Net Balance",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "d2bb6fbb-74f9-422a-a1de-fa4f61f8a0ed",
+            "sourceColumn": "Net Balance",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Balance",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "2b24f971-b12b-4d9b-8739-2a0df9180ded",
+            "sourceColumn": "Balance",
+            "summarizeBy": "none"
           }
         ],
         "lineageTag": "05613caf-4d67-4fb0-be8a-174be5200092",
@@ -2053,9 +2083,14 @@
                 "    Source = Table.NestedJoin(Merge2, {\"Account Name\"}, JR, {\"New\"}, \"JR\", JoinKind.LeftOuter),",
                 "    #\"Expanded JR\" = Table.ExpandTableColumn(Source, \"JR\", {\"Account ID\"}, {\"Account ID\"}),",
                 "    #\"Removed Duplicates\" = Table.Distinct(#\"Expanded JR\", {\"Account ID\"}),",
-                "    #\"Filtered Rows\" = Table.SelectRows(#\"Removed Duplicates\", each ([Financial Statements] = \"Income Statement\"))",
+                "    #\"Inserted Subtraction\" = Table.AddColumn(#\"Removed Duplicates\", \"Subtraction\", each [DR Amount] - [CR Amount], type number),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Inserted Subtraction\",{{\"Subtraction\", \"Net Balance\"}}),",
+                "    #\"Reordered Columns\" = Table.ReorderColumns(#\"Renamed Columns\",{\"Account Name\", \"DR Amount\", \"CR Amount\", \"Net Balance\", \"Account Categories\", \"Sub Account\", \"Financial Statements\", \"SA ID\", \"FS ID\", \"ACT ID\", \"Account ID\"}),",
+                "    #\"Added Custom\" = Table.AddColumn(#\"Reordered Columns\", \"Balance\", each if [Net Balance] < 0 then [Net Balance] *-1 else ",
+                "[Net Balance]),",
+                "    #\"Reordered Columns1\" = Table.ReorderColumns(#\"Added Custom\",{\"Account Name\", \"DR Amount\", \"CR Amount\", \"Net Balance\", \"Balance\", \"Account Categories\", \"Sub Account\", \"Financial Statements\", \"SA ID\", \"FS ID\", \"ACT ID\", \"Account ID\"})",
                 "in",
-                "    #\"Filtered Rows\""
+                "    #\"Reordered Columns1\""
               ],
               "type": "m"
             }
