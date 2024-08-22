@@ -1520,6 +1520,57 @@
             }
           }
         ]
+      },
+      {
+        "name": "Badsha Measure",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "2a26d4d9aeb54ef1bf20befec0794dc9"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Column",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "7f92b9ed-6d3c-4690-a32f-d87c4afa87df",
+            "sourceColumn": "[Column]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "lineageTag": "f1b869e9-7e2e-48e2-adc7-1b353ed30d30",
+        "measures": [
+          {
+            "name": "Measure",
+            "annotations": [
+              {
+                "name": "43dbc3e8-3a1c-4b6f-9923-b49ff7d6691c",
+                "value": "True"
+              }
+            ],
+            "lineageTag": "da798a2a-076f-48d4-ba22-4d9a97141f88"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Badsha Measure",
+            "mode": "import",
+            "source": {
+              "expression": "Row(\"Column\", BLANK())",
+              "type": "calculated"
+            }
+          }
+        ]
       }
     ]
   }

@@ -96,6 +96,18 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1481.4543950000004,
+            "y": 413.1700050000004
+          },
+          "nodeIndex": "Badsha Measure",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",
