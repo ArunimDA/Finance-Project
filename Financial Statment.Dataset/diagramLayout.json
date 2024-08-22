@@ -4,8 +4,8 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 775.20287917059272,
-        "y": 407.8858044009786
+        "x": 145.81440619814344,
+        "y": 0
       },
       "nodes": [
         {
@@ -84,6 +84,18 @@
             "width": 234
           },
           "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1481.4543950000004,
+            "y": 437.1700050000004
+          },
+          "nodeIndex": "Amlan Parameter",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",

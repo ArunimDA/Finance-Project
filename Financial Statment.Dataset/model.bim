@@ -463,7 +463,7 @@
             "lineageTag": "d7332e02-f835-4cd2-a843-64f73fa3a704"
           },
           {
-            "name": "Current Balance",
+            "name": "Current Y",
             "expression": [
               "CALCULATE(SUM(JR[Balance]),",
               "                MONTH(JR[Balance]= MONTH(TODAY())),",
@@ -473,7 +473,7 @@
             "lineageTag": "713c04c4-0c43-4fb5-a91e-a8265b62edbd"
           },
           {
-            "name": "Previous Balance",
+            "name": "Previous Y",
             "expression": [
               "CALCULATE(SUM(JR[Balance]),",
               "                MONTH(JR[Balance]= MONTH(TODAY()))-1,",
@@ -483,8 +483,8 @@
             "lineageTag": "dfbb2c10-9730-459a-aa37-936cf2831260"
           },
           {
-            "name": "Balance Variance",
-            "expression": "([Current Balance] - [Previous Balance])",
+            "name": "Variance",
+            "expression": "([Current Y] - [Previous Y])",
             "formatString": "0",
             "lineageTag": "bc9db6ec-41fc-40bc-b385-b6ee83934081"
           }
@@ -844,6 +844,38 @@
             "lineageTag": "36b5bec7-a2b0-4692-b863-4ba3bfe2257d",
             "sourceColumn": "Balance",
             "summarizeBy": "sum"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": "MONTH(JR[Date])",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "7dd3ed03-b093-4f11-87aa-7e22bd88920a",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "Yaer",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": "YEAR(JR[Date])",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "6b826328-431d-42f7-8e91-b155a7725407",
+            "summarizeBy": "sum",
+            "type": "calculated"
           }
         ],
         "lineageTag": "abd19040-da3a-4b83-ab99-b0c329457115",
@@ -1387,6 +1419,104 @@
                 "    #\"Changed Type\""
               ],
               "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Amlan Parameter",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "e837ef05dd354b2093e53be2d2b47d4e"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Parameter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": false,
+            "lineageTag": "675c8109-b151-4a94-aa50-f47cc89b0a98",
+            "relatedColumnDetails": {
+              "groupByColumns": [
+                {
+                  "groupingColumn": "Parameter Fields"
+                }
+              ]
+            },
+            "sortByColumn": "Parameter Order",
+            "sourceColumn": "[Value1]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Parameter Fields",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "extendedProperties": [
+              {
+                "name": "ParameterMetadata",
+                "type": "json",
+                "value": {
+                  "kind": 2,
+                  "version": 3
+                }
+              }
+            ],
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": false,
+            "lineageTag": "cf13d21a-a92f-4417-89d5-37b2b628d0d2",
+            "sortByColumn": "Parameter Order",
+            "sourceColumn": "[Value2]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Parameter Order",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": false,
+            "lineageTag": "0331ef88-7e5c-43fa-8180-781f7c97666f",
+            "sourceColumn": "[Value3]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "lineageTag": "5b623597-2967-4ab1-973e-761f21202170",
+        "partitions": [
+          {
+            "name": "Amlan Parameter",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "{",
+                "    (\"Expense\", NAMEOF('Amlan Measure'[Expense]), 0),",
+                "    (\"Revenue\", NAMEOF('Amlan Measure'[Revenue]), 1),",
+                "    (\"Profit %\", NAMEOF('Amlan Measure'[Profit %]), 2)",
+                "}"
+              ],
+              "type": "calculated"
             }
           }
         ]
