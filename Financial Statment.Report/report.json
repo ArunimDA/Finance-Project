@@ -1,5 +1,5 @@
 {
-  "config": "{\"version\":\"5.57\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY23SU11\",\"version\":\"5.50\",\"type\":2}},\"activeSectionIndex\":9,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
+  "config": "{\"version\":\"5.57\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY23SU11\",\"version\":\"5.50\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}",
   "layoutOptimization": 0,
   "resourcePackages": [
     {
@@ -25,7 +25,7 @@
       "filters": "[]",
       "height": 720.00,
       "name": "279306a55956f3889105",
-      "ordinal": 9,
+      "ordinal": 3,
       "visualContainers": [
         {
           "config": "{\"name\":\"97991bf472f09e0d1018\",\"layouts\":[{\"id\":0,\"position\":{\"x\":39,\"y\":18,\"z\":0,\"width\":888,\"height\":409,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"TB.Account Name\"},{\"queryRef\":\"Amlan Measure.Total Revenue\"},{\"queryRef\":\"Amlan Measure.Total Expense\"},{\"queryRef\":\"Amlan Measure.Total Balance\"},{\"queryRef\":\"Amlan Measure.Net Profit / Loss\"},{\"queryRef\":\"Amlan Measure.Profit Loss Variance\"},{\"queryRef\":\"TB.Sub Account\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t\",\"Entity\":\"TB\",\"Type\":0},{\"Name\":\"a\",\"Entity\":\"Amlan Measure\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"Account Name\"},\"Name\":\"TB.Account Name\",\"NativeReferenceName\":\"Account Name\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Total Revenue\"},\"Name\":\"Amlan Measure.Total Revenue\",\"NativeReferenceName\":\"Total Revenue\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Total Expense\"},\"Name\":\"Amlan Measure.Total Expense\",\"NativeReferenceName\":\"Total Expense\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Total Balance\"},\"Name\":\"Amlan Measure.Total Balance\",\"NativeReferenceName\":\"Total Balance\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Net Profit / Loss\"},\"Name\":\"Amlan Measure.Net Profit / Loss\",\"NativeReferenceName\":\"Net Profit / Loss\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Profit Loss Variance\"},\"Name\":\"Amlan Measure.Profit Loss Variance\",\"NativeReferenceName\":\"Profit Loss Variance\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"Sub Account\"},\"Name\":\"TB.Sub Account\",\"NativeReferenceName\":\"Sub Account\"}]},\"drillFilterOtherVisuals\":true}}",
@@ -37,28 +37,6 @@
           "z": 0.00
         }
       ],
-      "width": 1280.00
-    },
-    {
-      "config": "{}",
-      "displayName": "Amlan06",
-      "displayOption": 1,
-      "filters": "[]",
-      "height": 720.00,
-      "name": "58c3b6bec6618e10e5b2",
-      "ordinal": 6,
-      "visualContainers": [],
-      "width": 1280.00
-    },
-    {
-      "config": "{}",
-      "displayName": "Amlan 10",
-      "displayOption": 1,
-      "filters": "[]",
-      "height": 720.00,
-      "name": "5fc69f45776ed6ff0d49",
-      "ordinal": 8,
-      "visualContainers": [],
       "width": 1280.00
     },
     {
@@ -97,87 +75,33 @@
           "z": 0.00
         },
         {
-          "config": "{\"name\":\"ad28edc3246228f13759\",\"layouts\":[{\"id\":0,\"position\":{\"x\":24.28571428571429,\"y\":31.42857142857143,\"z\":1000,\"width\":398.5714285714286,\"height\":201.42857142857144,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"TB.Sub Account\",\"active\":true},{\"queryRef\":\"TB.Account Name\",\"active\":true}],\"Values\":[{\"queryRef\":\"Amlan.Total Revenue\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t\",\"Entity\":\"TB\",\"Type\":0},{\"Name\":\"a\",\"Entity\":\"Amlan Measure\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"Sub Account\"},\"Name\":\"TB.Sub Account\",\"NativeReferenceName\":\"Sub Account\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Total Revenue\"},\"Name\":\"Amlan.Total Revenue\",\"NativeReferenceName\":\"Total Revenue\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"Account Name\"},\"Name\":\"TB.Account Name\",\"NativeReferenceName\":\"Account Name\"}]},\"expansionStates\":[{\"roles\":[\"Rows\"],\"levels\":[{\"queryRefs\":[\"TB.Sub Account\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"TB\"}},\"Property\":\"Sub Account\"}}],\"isPinned\":true},{\"queryRefs\":[\"TB.Account Name\"],\"isCollapsed\":true,\"isPinned\":true}],\"root\":{\"identityValues\":null,\"children\":[{\"identityValues\":[{\"Literal\":{\"Value\":\"'Revenue'\"}}],\"isToggled\":true}]}}],\"drillFilterOtherVisuals\":true,\"filterSortOrder\":3,\"hasDefaultSort\":true,\"objects\":{\"total\":[{\"properties\":{}}],\"columnHeaders\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"16D\"}}}}}],\"rowHeaders\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"14D\"}}}}}],\"values\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"14D\"}}}}}],\"subTotals\":[{\"properties\":{\"columnSubtotals\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"rowSubtotals\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
-          "filters": "[{\"name\":\"Filterf62e0dabfd352edd54ee\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"TB\"}},\"Property\":\"Financial Statements\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"t\",\"Entity\":\"TB\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"Financial Statements\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Income Statement'\"}}]]}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{},\"ordinal\":1},{\"name\":\"Filter11862fc6e16ab7d8676c\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"TB\"}},\"Property\":\"Account Categories\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"t\",\"Entity\":\"TB\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"Account Categories\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Revenue'\"}}]]}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{},\"ordinal\":2},{\"name\":\"Filter70847860d1dfae45aef5\",\"expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"TB\"}},\"Property\":\"Balance\"}},\"Function\":0}},\"type\":\"Advanced\",\"howCreated\":1,\"isHiddenInViewMode\":false,\"ordinal\":3}]",
-          "height": 201.43,
-          "width": 398.57,
-          "x": 24.29,
-          "y": 31.43,
+          "config": "{\"name\":\"ad28edc3246228f13759\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":20.15748031496063,\"z\":1000,\"width\":477.0603674540682,\"height\":201.57480314960628,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"JR.Sub Account\",\"active\":true},{\"queryRef\":\"JR.Account Name\",\"active\":true}],\"Values\":[{\"queryRef\":\"Sum(JR.Balance)\"},{\"queryRef\":\"Amlan Measure.Previous Y\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"j\",\"Entity\":\"JR\",\"Type\":0},{\"Name\":\"a\",\"Entity\":\"Amlan Measure\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"j\"}},\"Property\":\"Account Name\"},\"Name\":\"JR.Account Name\",\"NativeReferenceName\":\"Account Name\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"j\"}},\"Property\":\"Sub Account\"},\"Name\":\"JR.Sub Account\",\"NativeReferenceName\":\"Sub Account\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"j\"}},\"Property\":\"Balance\"}},\"Function\":0},\"Name\":\"Sum(JR.Balance)\",\"NativeReferenceName\":\"Sum of Balance\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Previous Y\"},\"Name\":\"Amlan Measure.Previous Y\",\"NativeReferenceName\":\"Previous Y\"}]},\"expansionStates\":[{\"roles\":[\"Rows\"],\"levels\":[{\"queryRefs\":[\"JR.Sub Account\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"JR\"}},\"Property\":\"Sub Account\"}}],\"isPinned\":true},{\"queryRefs\":[\"JR.Account Name\"],\"isCollapsed\":true,\"isPinned\":true}],\"root\":{\"identityValues\":null,\"children\":[{\"identityValues\":[{\"Literal\":{\"Value\":\"'Revenue'\"}}],\"isToggled\":true}]}}],\"drillFilterOtherVisuals\":true,\"filterSortOrder\":3,\"hasDefaultSort\":true,\"objects\":{\"total\":[{\"properties\":{}}],\"columnHeaders\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"16D\"}}}}}],\"rowHeaders\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"14D\"}}}}}],\"values\":[{\"properties\":{\"fontSize\":{\"expr\":{\"Literal\":{\"Value\":\"14D\"}}}}}],\"subTotals\":[{\"properties\":{\"columnSubtotals\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"rowSubtotals\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[{\"name\":\"e082f81ce0070b1e31b1\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"JR\"}},\"Property\":\"Financial Statements\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"j\",\"Entity\":\"JR\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"j\"}},\"Property\":\"Financial Statements\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Income Statement'\"}}]]}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{},\"ordinal\":0},{\"name\":\"699e89801d0d70340540\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"JR\"}},\"Property\":\"Account Categories\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"j\",\"Entity\":\"JR\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"j\"}},\"Property\":\"Account Categories\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Revenue'\"}}]]}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{},\"ordinal\":1}]",
+          "height": 201.57,
+          "width": 477.06,
+          "x": 0.00,
+          "y": 20.16,
           "z": 1000.00
         },
         {
-          "config": "{\"name\":\"d46b478ec107d6be59b9\",\"layouts\":[{\"id\":0,\"position\":{\"x\":422.8571428571429,\"y\":41.42857142857143,\"z\":4000,\"width\":285.7142857142857,\"height\":98.57142857142858,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"JR.Date\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"j\",\"Entity\":\"JR\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"j\"}},\"Property\":\"Date\"},\"Name\":\"JR.Date\",\"NativeReferenceName\":\"Date\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"j\"}},\"Property\":\"Date\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"startDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2019-01-10T00:00:00'\"}}},\"endDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2024-12-15T00:00:00'\"}}},\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Between'\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"j\",\"Entity\":\"JR\",\"Type\":0}],\"Where\":[{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"j\"}},\"Property\":\"Date\"}},\"Right\":{\"Literal\":{\"Value\":\"datetime'2019-01-10T00:00:00'\"}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"j\"}},\"Property\":\"Date\"}},\"Right\":{\"Literal\":{\"Value\":\"datetime'2024-12-16T00:00:00'\"}}}}}}}]}}}}]}}}",
+          "config": "{\"name\":\"d46b478ec107d6be59b9\",\"layouts\":[{\"id\":0,\"position\":{\"x\":576.1679790026246,\"y\":41.99475065616798,\"z\":4000,\"width\":285.56430446194224,\"height\":97.42782152230971,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"JR.Date\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"j\",\"Entity\":\"JR\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"j\"}},\"Property\":\"Date\"},\"Name\":\"JR.Date\",\"NativeReferenceName\":\"Date\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"j\"}},\"Property\":\"Date\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"data\":[{\"properties\":{\"startDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2019-01-01T00:00:00'\"}}},\"endDate\":{\"expr\":{\"Literal\":{\"Value\":\"datetime'2024-12-15T00:00:00'\"}}},\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Between'\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"j\",\"Entity\":\"JR\",\"Type\":0}],\"Where\":[{\"Condition\":{\"And\":{\"Left\":{\"Comparison\":{\"ComparisonKind\":2,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"j\"}},\"Property\":\"Date\"}},\"Right\":{\"Literal\":{\"Value\":\"datetime'2019-01-01T00:00:00'\"}}}},\"Right\":{\"Comparison\":{\"ComparisonKind\":3,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"j\"}},\"Property\":\"Date\"}},\"Right\":{\"Literal\":{\"Value\":\"datetime'2024-12-16T00:00:00'\"}}}}}}}]}}}}]}}}",
           "filters": "[]",
-          "height": 98.57,
-          "width": 285.71,
-          "x": 422.86,
-          "y": 41.43,
+          "height": 97.43,
+          "width": 285.56,
+          "x": 576.17,
+          "y": 41.99,
           "z": 4000.00
         },
         {
-          "config": "{\"name\":\"dd48dbde3824a6d145cf\",\"layouts\":[{\"id\":0,\"position\":{\"x\":850.0000000000002,\"y\":25.714285714285715,\"z\":2000,\"width\":214.2857142857143,\"height\":164.2857142857143,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"cardVisual\",\"projections\":{\"Data\":[{\"queryRef\":\"Amlan.Net Profit / Loss\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"Amlan Measure\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Net Profit / Loss\"},\"Name\":\"Amlan.Net Profit / Loss\",\"NativeReferenceName\":\"Net Profit / Loss\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Net Profit / Loss\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "config": "{\"name\":\"dd48dbde3824a6d145cf\",\"layouts\":[{\"id\":0,\"position\":{\"x\":817.9200000000001,\"y\":57.6,\"z\":2000,\"width\":214.56,\"height\":164.16,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"cardVisual\",\"projections\":{\"Data\":[{\"queryRef\":\"Amlan.Net Profit / Loss\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"Amlan Measure\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Net Profit / Loss\"},\"Name\":\"Amlan.Net Profit / Loss\",\"NativeReferenceName\":\"Net Profit / Loss\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Net Profit / Loss\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
           "filters": "[]",
-          "height": 164.29,
-          "width": 214.29,
-          "x": 850.00,
-          "y": 25.71,
+          "height": 164.16,
+          "width": 214.56,
+          "x": 817.92,
+          "y": 57.60,
           "z": 2000.00
         }
       ],
-      "width": 1280.00
-    },
-    {
-      "config": "{}",
-      "displayName": "Amlan4",
-      "displayOption": 1,
-      "filters": "[]",
-      "height": 720.00,
-      "name": "ReportSection14cb3c85216e1c606ed1",
-      "ordinal": 3,
-      "visualContainers": [],
-      "width": 1280.00
-    },
-    {
-      "config": "{}",
-      "displayName": "Amlan3",
-      "displayOption": 1,
-      "filters": "[]",
-      "height": 720.00,
-      "name": "ReportSection26acca9ca77be298462f",
-      "ordinal": 2,
-      "visualContainers": [],
-      "width": 1280.00
-    },
-    {
-      "config": "{}",
-      "displayName": "Amlan05",
-      "displayOption": 1,
-      "filters": "[]",
-      "height": 720.00,
-      "name": "ReportSection8accd43b0378ba2f4cfb",
-      "ordinal": 4,
-      "visualContainers": [
-        {
-          "config": "{\"name\":\"a7dcb8c1fd75c5c8a233\",\"layouts\":[{\"id\":0,\"position\":{\"x\":66.24000000000001,\"y\":27.36,\"z\":0,\"width\":279.36,\"height\":279.36,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"barChart\",\"drillFilterOtherVisuals\":true}}",
-          "filters": "[]",
-          "height": 279.36,
-          "width": 279.36,
-          "x": 66.24,
-          "y": 27.36,
-          "z": 0.00
-        }
-      ],
-      "width": 1280.00
-    },
-    {
-      "config": "{}",
-      "displayName": "Amlan 2",
-      "displayOption": 1,
-      "filters": "[]",
-      "height": 720.00,
-      "name": "ReportSectionf47fcfe88bead8b83c74",
-      "ordinal": 1,
-      "visualContainers": [],
       "width": 1280.00
     },
     {
@@ -187,7 +111,7 @@
       "filters": "[]",
       "height": 720.00,
       "name": "b40ff6f42ee1dbe912ba",
-      "ordinal": 5,
+      "ordinal": 1,
       "visualContainers": [
         {
           "config": "{\"name\":\"ebca1602829048170e8a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10,\"y\":0,\"width\":280,\"height\":280,\"z\":0,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"drillFilterOtherVisuals\":true}}",
@@ -208,7 +132,7 @@
       "filters": "[]",
       "height": 720.00,
       "name": "cc7dcf249f919b71cf4e",
-      "ordinal": 7,
+      "ordinal": 2,
       "visualContainers": [
         {
           "config": "{\"name\":\"156eeb87907e3b68ff5f\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10,\"y\":0,\"width\":280,\"height\":280,\"z\":0,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"columnChart\",\"drillFilterOtherVisuals\":true}}",
