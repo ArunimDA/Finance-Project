@@ -353,11 +353,7 @@
           },
           {
             "name": "Current Y",
-            "expression": [
-              "CALCULATE(SUM(JR[Balance]),",
-              "MONTH('Calender Amlan'[Month]) = MONTH(TODAY()),",
-              "Year('Calender Amlan'[Month]) = Year(TODAY()))"
-            ],
+            "expression": "CALCULATE([Total Balance],ALL(JR),'Calender Amlan'[Year] IN {2019,2020,2021,2022,2023})",
             "formatString": "0",
             "lineageTag": "fb83015a-86f7-45f2-a3a5-72b25efd6002"
           },
