@@ -352,26 +352,36 @@
             "lineageTag": "70ca83ac-a616-46ae-bfdd-df9b93d8bd3f"
           },
           {
-            "name": "Current Y",
-            "expression": "CALCULATE([Total Balance],ALL(JR),'Calender Amlan'[Year] IN {2019,2020,2021,2022,2023})",
-            "formatString": "0",
-            "lineageTag": "fb83015a-86f7-45f2-a3a5-72b25efd6002"
-          },
-          {
             "name": "Previous Y",
             "expression": [
-              "CALCULATE(SUM(JR[Balance]),",
-              "MONTH('Calender Amlan'[Month]) = MONTH(TODAY())-1,",
-              "Year('Calender Amlan'[Month]) = Year(TODAY()))"
+              "",
+              "VAR SelectedYear = ",
+              "    MAX('Calender Amlan'[Year]) // Using MAX to ensure a single year is selected",
+              "RETURN",
+              "IF(",
+              "    NOT ISBLANK(SelectedYear), ",
+              "    CALCULATE(",
+              "        SUM(JR[Balance]),",
+              "        'Calender Amlan'[Year] = SelectedYear - 1,",
+              "        REMOVEFILTERS('Calender Amlan') // Ensuring no other filters interfere",
+              "    ),",
+              "    BLANK()",
+              ")"
             ],
             "formatString": "0",
-            "lineageTag": "49b0ff40-b209-4aaa-90c0-6b1b527bafe4"
+            "lineageTag": "fb83015a-86f7-45f2-a3a5-72b25efd6002"
           },
           {
             "name": "Profit %",
             "expression": "[Net Profit] / [Total Revenue]",
             "formatString": "0.00%;-0.00%;0.00%",
             "lineageTag": "0063cecf-3218-4f53-8224-3c96577d5515"
+          },
+          {
+            "name": "Var %",
+            "expression": "DIVIDE([Total Balance] - [Previous Y],[Total Balance])",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "4eb67a18-3bfd-4c35-881a-4d2cc6d9151b"
           }
         ],
         "partitions": [
@@ -700,6 +710,45 @@
             "lineageTag": "21c99497-06a2-46b8-a2f0-6ef1478c5248",
             "sourceColumn": "Balance",
             "summarizeBy": "sum"
+          },
+          {
+            "name": "Month",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "DataType"
+              }
+            ],
+            "dataType": "string",
+            "expression": "FORMAT(JR[Date],\"MMM\")",
+            "lineageTag": "0a5901cf-fe1d-4529-b71f-92cb6233259a",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Year",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "DataType"
+              }
+            ],
+            "dataType": "int64",
+            "expression": "FORMAT(JR[Date],\"YYYY\")",
+            "formatString": "0",
+            "lineageTag": "083e4925-6a34-4e9a-9bbb-a6714fa5c103",
+            "summarizeBy": "sum",
+            "type": "calculated"
           }
         ],
         "lineageTag": "abd19040-da3a-4b83-ab99-b0c329457115",
