@@ -98,6 +98,19 @@
             "width": 234
           },
           "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1225.313267269808,
+            "y": 251.97198660120046
+          },
+          "nodeIndex": "Amlan 2 Parameter",
+          "nodeLineageTag": "eedaba8f-f9db-4d72-a8fe-6f3bd91a4a82",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
         }
       ],
       "name": "All tables",

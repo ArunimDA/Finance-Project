@@ -1278,6 +1278,103 @@
             }
           }
         ]
+      },
+      {
+        "name": "Amlan 2 Parameter",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "55b9ce9fde2e4bc48a9c3b03398c31e7"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Amlan 2 Parameter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": false,
+            "lineageTag": "fc70c1bc-c9b3-4235-829b-cecb86367fb7",
+            "relatedColumnDetails": {
+              "groupByColumns": [
+                {
+                  "groupingColumn": "Amlan 2 Parameter Fields"
+                }
+              ]
+            },
+            "sortByColumn": "Amlan 2 Parameter Order",
+            "sourceColumn": "[Value1]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Amlan 2 Parameter Fields",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "extendedProperties": [
+              {
+                "name": "ParameterMetadata",
+                "type": "json",
+                "value": {
+                  "kind": 2,
+                  "version": 3
+                }
+              }
+            ],
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": false,
+            "lineageTag": "7ee5663a-ab09-4eac-8897-64582a372fe3",
+            "sortByColumn": "Amlan 2 Parameter Order",
+            "sourceColumn": "[Value2]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Amlan 2 Parameter Order",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": false,
+            "lineageTag": "a0d778b9-3faf-48fd-afb5-cfb5884e3984",
+            "sourceColumn": "[Value3]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "lineageTag": "eedaba8f-f9db-4d72-a8fe-6f3bd91a4a82",
+        "partitions": [
+          {
+            "name": "Amlan 2 Parameter",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "{",
+                "    (\"Total Balance\", NAMEOF('Amlan Measure'[Total Balance]), 0),",
+                "    (\"Previous Y\", NAMEOF('Amlan Measure'[Previous Y]), 1)",
+                "}"
+              ],
+              "type": "calculated"
+            }
+          }
+        ]
       }
     ]
   }
