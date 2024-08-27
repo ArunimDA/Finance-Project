@@ -1971,6 +1971,51 @@
           }
         ],
         "showAsVariationsOnly": true
+      },
+      {
+        "name": "Badsha Measure",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "349b368fd2ab4a1eacfa425cdf4ddc3d"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Column",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "21b14175-b46c-4b0e-8681-f82678295020",
+            "sourceColumn": "[Column]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "lineageTag": "8287e415-185b-4b08-988d-a2fbef8931ab",
+        "measures": [
+          {
+            "name": "Year",
+            "lineageTag": "be70991d-195f-4ced-9060-db6dde1a5b19"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Badsha Measure",
+            "mode": "import",
+            "source": {
+              "expression": "Row(\"Column\", BLANK())",
+              "type": "calculated"
+            }
+          }
+        ]
       }
     ]
   }
