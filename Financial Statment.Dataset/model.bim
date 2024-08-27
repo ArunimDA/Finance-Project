@@ -826,6 +826,44 @@
             "lineageTag": "083e4925-6a34-4e9a-9bbb-a6714fa5c103",
             "summarizeBy": "sum",
             "type": "calculated"
+          },
+          {
+            "name": "cash flow Category",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": [
+              "",
+              "SWITCH(",
+              "    TRUE(),",
+              "    CONTAINSSTRING(JR[Details], \"equipment\"), \"Investing Activities\",",
+              "    CONTAINSSTRING(JR[Details], \"vehicle\"), \"Investing Activities\",",
+              "    CONTAINSSTRING(JR[Details], \"machinery\"), \"Investing Activities\",",
+              "    CONTAINSSTRING(JR[Details], \"Loan received\"), \"Financing Activities\",",
+              "    CONTAINSSTRING(JR[Details], \"Capital contribution\"), \"Financing Activities\",",
+              "    CONTAINSSTRING(JR[Details], \"Loan repayment\"), \"Financing Activities\",",
+              "    CONTAINSSTRING(JR[Details], \"rent\"), \"Operating Activities\",",
+              "    CONTAINSSTRING(JR[Details], \"utility\"), \"Operating Activities\",",
+              "    CONTAINSSTRING(JR[Details], \"inventory\"), \"Operating Activities\",CONTAINSSTRING(JR[Details], \"inventoy\"), \"Operating Activities\",CONTAINSSTRING(JR[Details], \"Utilities bill\"), \"Operating Activities\",CONTAINSSTRING(JR[Details], \"Received payment from customer\"), \"Operating Activities\",",
+              "    CONTAINSSTRING(JR[Details], \"sales\"), \"Operating Activities\",",
+              "    CONTAINSSTRING(JR[Details], \"advertising\"), \"Operating Activities\",",
+              "    CONTAINSSTRING(JR[Details], \"salaries\"), \"Operating Activities\",",
+              "    CONTAINSSTRING(JR[Details], \"tax\"), \"Operating Activities\",",
+              "    CONTAINSSTRING(JR[Details], \"office supplies\"), \"Operating Activities\",",
+              "    CONTAINSSTRING(JR[Details], \"services\"), \"Operating Activities\",",
+              "    CONTAINSSTRING(JR[Details], \"Repairs\"), \"Operating Activities\",",
+              "    \"Other\"",
+              ")",
+              ""
+            ],
+            "isDataTypeInferred": true,
+            "lineageTag": "8b2d58e9-3e50-41e9-8bce-b3ad591646f6",
+            "summarizeBy": "none",
+            "type": "calculated"
           }
         ],
         "lineageTag": "abd19040-da3a-4b83-ab99-b0c329457115",
@@ -2009,6 +2047,59 @@
         "partitions": [
           {
             "name": "Badsha Measure",
+            "mode": "import",
+            "source": {
+              "expression": "Row(\"Column\", BLANK())",
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Ashraf Measure",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "b5373eb6642842919b43808842ac99b7"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Column",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "8728ae7b-bfa2-4e5d-8f38-3b1114a56529",
+            "sourceColumn": "[Column]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "lineageTag": "0cd8a0ec-ad86-41b4-bcea-822214aca2ac",
+        "measures": [
+          {
+            "name": "cash inflow",
+            "expression": "CALCULATE(SUM(JR[Balance]),FILTER(JR,JR[Cash flow Status]=\"Cash Inflow\"))",
+            "formatString": "0.00",
+            "lineageTag": "a6d2a20f-3e12-4f5b-b9ec-033122981226"
+          },
+          {
+            "name": "cash outflow",
+            "expression": "CALCULATE(SUM(JR[Balance]),FILTER(JR,JR[Cash flow Status]=\"Cash Outfow\"))",
+            "formatString": "0.00",
+            "lineageTag": "e22d3b6f-3043-4c18-90ae-12a4d78d880d"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Ashraf Measure",
             "mode": "import",
             "source": {
               "expression": "Row(\"Column\", BLANK())",
