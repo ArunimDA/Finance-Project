@@ -459,6 +459,24 @@
             "expression": "DIVIDE([AVG Inventory],[Total COGS]) * 365",
             "formatString": "0",
             "lineageTag": "15c13904-4780-4b3a-9bf2-75b8b449d4ea"
+          },
+          {
+            "name": "Current Assets",
+            "expression": "CALCULATE(SUM(TB[Balance]),TB,TB[Sub Account] = \"Current Assets\")",
+            "formatString": "0.00",
+            "lineageTag": "0c43954e-1147-495c-843f-fd9334341c6c"
+          },
+          {
+            "name": "Current Liabilities",
+            "expression": "CALCULATE(SUM(TB[Balance]),TB,TB[Sub Account]=\"Current Liabilities\" )",
+            "formatString": "0.00",
+            "lineageTag": "6f5c5285-5cad-408a-a0cd-2167cae1e371"
+          },
+          {
+            "name": "WC Ratio",
+            "expression": "DIVIDE([Current Assets],[Current Liabilities]) ",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "dd826be5-9762-49ac-a91a-ad83a338051e"
           }
         ],
         "partitions": [
