@@ -205,6 +205,38 @@
         "fromTable": "TB_New",
         "toColumn": "Sub Account",
         "toTable": "SAC_New"
+      },
+      {
+        "name": "eab1a16f-765a-1cf4-8ce0-5b85a8d7778e",
+        "fromColumn": "Date",
+        "fromTable": "JR_New",
+        "isActive": false,
+        "toColumn": "Date",
+        "toTable": "Calender Amlan"
+      },
+      {
+        "name": "148c0fe4-76af-3856-b1be-5b38679e06f3",
+        "fromColumn": "ACT ID",
+        "fromTable": "JR_New",
+        "isActive": false,
+        "toColumn": "ACT ID",
+        "toTable": "AC"
+      },
+      {
+        "name": "1a207a95-010a-56c5-18b3-29c441e2d7e5",
+        "fromColumn": "FS ID",
+        "fromTable": "JR_New",
+        "isActive": false,
+        "toColumn": "FS ID",
+        "toTable": "FS"
+      },
+      {
+        "name": "b69be4e5-303e-2b2a-f743-a577df8d8fa9",
+        "fromColumn": "Account Categories",
+        "fromTable": "TB_New",
+        "isActive": false,
+        "toColumn": "Account Categories",
+        "toTable": "AC"
       }
     ],
     "sourceQueryCulture": "en-US",
@@ -2280,11 +2312,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          }
-        ],
-        "changedProperties": [
+          },
           {
-            "property": "Name"
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -2307,13 +2338,17 @@
               {
                 "name": "SummarizationSetBy",
                 "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
               }
             ],
-            "dataType": "int64",
-            "formatString": "0",
+            "dataType": "dateTime",
+            "formatString": "Long Date",
             "lineageTag": "f55e0a1f-e676-4fdd-8a9f-08475fbfeef2",
             "sourceColumn": "Date",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Account Name",
@@ -2473,6 +2508,20 @@
             "lineageTag": "312df47e-d78f-4565-8443-513129e6a735",
             "sourceColumn": "Financial Statements",
             "summarizeBy": "none"
+          },
+          {
+            "name": "Balance",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "b70f98a6-7902-4c53-aac2-112ae82f1075",
+            "sourceColumn": "Balance",
+            "summarizeBy": "sum"
           }
         ],
         "lineageTag": "6c249e97-32e7-4b88-922b-99b8b4f85cd6",
@@ -2485,9 +2534,15 @@
                 "let",
                 "    Source = Csv.Document(Web.Contents(\"https://drive.google.com/uc?export=download&id=1v0FZwY8rncl1QWTZGffaS0OZ275GfIVM\"),[Delimiter=\",\", Columns=14, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Journal ID\", type text}, {\"Date\", Int64.Type}, {\"Account Name\", type text}, {\"Dr Amount\", Int64.Type}, {\"Cr Amount\", Int64.Type}, {\"Details\", type text}, {\"Cash flow statement operator\", type text}, {\"Cash flow Amount\", Int64.Type}, {\"ACT ID\", type text}, {\"SA ID\", type text}, {\"FS ID\", type text}, {\"Account Categories\", type text}, {\"Sub Account\", type text}, {\"Financial Statements\", type text}})",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Journal ID\", type text}, {\"Date\", Int64.Type}, {\"Account Name\", type text}, {\"Dr Amount\", Int64.Type}, {\"Cr Amount\", Int64.Type}, {\"Details\", type text}, {\"Cash flow statement operator\", type text}, {\"Cash flow Amount\", Int64.Type}, {\"ACT ID\", type text}, {\"SA ID\", type text}, {\"FS ID\", type text}, {\"Account Categories\", type text}, {\"Sub Account\", type text}, {\"Financial Statements\", type text}}),",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Changed Type\",{{\"Date\", type date}}),",
+                "    #\"Replaced Value\" = Table.ReplaceValue(#\"Changed Type1\",null,0,Replacer.ReplaceValue,{\"Dr Amount\"}),",
+                "    #\"Replaced Value1\" = Table.ReplaceValue(#\"Replaced Value\",null,0,Replacer.ReplaceValue,{\"Cr Amount\"}),",
+                "    #\"Changed Type2\" = Table.TransformColumnTypes(#\"Replaced Value1\",{{\"Dr Amount\", Int64.Type}, {\"Cr Amount\", Int64.Type}}),",
+                "    #\"Added Custom\" = Table.AddColumn(#\"Changed Type2\", \"Balance\", each [Dr Amount]+[Cr Amount]),",
+                "    #\"Changed Type3\" = Table.TransformColumnTypes(#\"Added Custom\",{{\"Balance\", Int64.Type}})",
                 "in",
-                "    #\"Changed Type\""
+                "    #\"Changed Type3\""
               ],
               "type": "m"
             }
@@ -2669,6 +2724,57 @@
                 "    #\"Changed Type\""
               ],
               "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Alamgir Measures",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "02d68b7d69a240d3a0edf27f68f7520a"
+          },
+          {
+            "name": "436ba87b-9c83-4389-a31b-ebd06a36be98",
+            "value": "{\"Expression\":\"\"}"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Column",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "403ab3e4-71e9-4432-a135-3f6df207a00e",
+            "sourceColumn": "[Column]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "lineageTag": "8214da14-d290-4138-b548-058a4f2bb6b0",
+        "measures": [
+          {
+            "name": "Total Operating Expense",
+            "expression": "CALCULATE(SUM(JR_New[Balance]),FILTER(JR_New,JR_New[Sub Account]=\"Operating Expense\"))",
+            "formatString": "0",
+            "lineageTag": "8859a755-aa27-4988-9cd4-abce6c125ead"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Alamgir Measures",
+            "mode": "import",
+            "source": {
+              "expression": "Row(\"Column\", BLANK())",
+              "type": "calculated"
             }
           }
         ]
