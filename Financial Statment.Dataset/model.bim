@@ -4,7 +4,7 @@
     "annotations": [
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"SAC\",\"JR\",\"FS\",\"AC\",\"JR (2)\",\"TB\"]"
+        "value": "[\"SAC\",\"JR\",\"FS\",\"AC\",\"JR (2)\",\"TB\",\"SAC_New\",\"JR_New\",\"TB_New\"]"
       },
       {
         "name": "__PBI_TimeIntelligenceEnabled",
@@ -129,6 +129,82 @@
         "isActive": false,
         "toColumn": "Account Name",
         "toTable": "TB"
+      },
+      {
+        "name": "AutoDetected_e5f1f5dc-2e99-4852-b008-c1d840d787bb",
+        "fromColumn": "Journal ID",
+        "fromTable": "JR_New",
+        "toColumn": "Journal ID",
+        "toTable": "JR"
+      },
+      {
+        "name": "AutoDetected_437f6248-02e7-420a-97e6-2816b39cbb49",
+        "fromColumn": "Sub Account",
+        "fromTable": "TB_New",
+        "toColumn": "Sub Account",
+        "toTable": "SAC"
+      },
+      {
+        "name": "AutoDetected_4aeebb8b-c9fd-48ca-b323-5951e6101644",
+        "fromColumn": "Account ID",
+        "fromTable": "JR",
+        "isActive": false,
+        "toColumn": "Account ID",
+        "toTable": "TB_New"
+      },
+      {
+        "name": "AutoDetected_9aef38d7-9464-47e5-8dc9-f978468aa019",
+        "fromColumn": "ACT ID",
+        "fromTable": "TB_New",
+        "toColumn": "ACT ID",
+        "toTable": "AC"
+      },
+      {
+        "name": "AutoDetected_1e97b610-1508-487c-9f08-4a480ddc43e5",
+        "fromColumn": "FS ID",
+        "fromTable": "TB_New",
+        "toColumn": "FS ID",
+        "toTable": "FS"
+      },
+      {
+        "name": "AutoDetected_22771909-85a9-4747-9e41-6dff38431cf7",
+        "crossFilteringBehavior": "bothDirections",
+        "fromCardinality": "one",
+        "fromColumn": "Account Name",
+        "fromTable": "TB_New",
+        "isActive": false,
+        "toColumn": "Account Name",
+        "toTable": "JR (2)"
+      },
+      {
+        "name": "AutoDetected_32656aa3-d5b5-4592-8723-a8cc77bac50c",
+        "fromColumn": "Balance",
+        "fromTable": "TB",
+        "isActive": false,
+        "toColumn": "Balance",
+        "toTable": "TB_New"
+      },
+      {
+        "name": "AutoDetected_50bebc72-9bab-41bb-b02f-ed18b60249ab",
+        "fromColumn": "Sub Account",
+        "fromTable": "JR",
+        "toColumn": "Sub Account",
+        "toTable": "SAC_New"
+      },
+      {
+        "name": "AutoDetected_0f7175c6-d912-43ea-9460-9e690ed97649",
+        "fromColumn": "Sub Account",
+        "fromTable": "TB",
+        "isActive": false,
+        "toColumn": "Sub Account",
+        "toTable": "SAC_New"
+      },
+      {
+        "name": "AutoDetected_702475c0-d761-466a-8d23-f39037ce2b7b",
+        "fromColumn": "Sub Account",
+        "fromTable": "TB_New",
+        "toColumn": "Sub Account",
+        "toTable": "SAC_New"
       }
     ],
     "sourceQueryCulture": "en-US",
@@ -2134,6 +2210,465 @@
             "source": {
               "expression": "Row(\"Column\", BLANK())",
               "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "SAC_New",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Sub Account",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c19919e2-5663-470c-9863-40a4f041f829",
+            "sourceColumn": "Sub Account",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "SA ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "499b9a64-2467-4ebe-b801-580bd0039a85",
+            "sourceColumn": "SA ID",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "ed20af7c-e404-478e-b5e0-29ca70e27b9a",
+        "partitions": [
+          {
+            "name": "SAC_New",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(\"https://drive.google.com/uc?export=download&id=1d-D9mC-L5gJH1pwDzl6CeGtLEIonccte\"),[Delimiter=\",\", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}, {\"Column2\", type text}}),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Changed Type\", [PromoteAllScalars=true]),",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Sub Account\", type text}, {\"SA ID\", type text}})",
+                "in",
+                "    #\"Changed Type1\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "JR_New",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "changedProperties": [
+          {
+            "property": "Name"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Journal ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e423b730-746f-4c31-a1b3-ea0bf391df3f",
+            "sourceColumn": "Journal ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "f55e0a1f-e676-4fdd-8a9f-08475fbfeef2",
+            "sourceColumn": "Date",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Account Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "00aca0db-98c5-4808-a1a5-2938212084f4",
+            "sourceColumn": "Account Name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Dr Amount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "a614ed1c-ff28-4b06-8845-6a8cd961ab48",
+            "sourceColumn": "Dr Amount",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Cr Amount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "3a1d0bb7-88f4-477a-84b0-8b365c32e251",
+            "sourceColumn": "Cr Amount",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Details",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "36f059a9-7bca-425e-b33d-785302669228",
+            "sourceColumn": "Details",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Cash flow statement operator",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "74064a17-d616-489d-a332-aba937c307ad",
+            "sourceColumn": "Cash flow statement operator",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Cash flow Amount",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "135c259d-6157-4719-bd1e-f115e3ca7922",
+            "sourceColumn": "Cash flow Amount",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "ACT ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "256986a7-5939-45f9-9af0-fe3c6cbd1b73",
+            "sourceColumn": "ACT ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "SA ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "664066ec-cd7a-40b2-adc7-266577819510",
+            "sourceColumn": "SA ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "FS ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "7daa5e06-9697-49a3-b568-20cfefc150ef",
+            "sourceColumn": "FS ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Account Categories",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "7c4d7def-e840-4997-a431-a84054daafee",
+            "sourceColumn": "Account Categories",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Sub Account",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "44d3221b-fa58-4f50-8cbd-f685082f9c5a",
+            "sourceColumn": "Sub Account",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Financial Statements",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "312df47e-d78f-4565-8443-513129e6a735",
+            "sourceColumn": "Financial Statements",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "6c249e97-32e7-4b88-922b-99b8b4f85cd6",
+        "partitions": [
+          {
+            "name": "JR_New",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(\"https://drive.google.com/uc?export=download&id=1v0FZwY8rncl1QWTZGffaS0OZ275GfIVM\"),[Delimiter=\",\", Columns=14, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Journal ID\", type text}, {\"Date\", Int64.Type}, {\"Account Name\", type text}, {\"Dr Amount\", Int64.Type}, {\"Cr Amount\", Int64.Type}, {\"Details\", type text}, {\"Cash flow statement operator\", type text}, {\"Cash flow Amount\", Int64.Type}, {\"ACT ID\", type text}, {\"SA ID\", type text}, {\"FS ID\", type text}, {\"Account Categories\", type text}, {\"Sub Account\", type text}, {\"Financial Statements\", type text}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "TB_New",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "changedProperties": [
+          {
+            "property": "Name"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Account ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "6a10e59f-ee7c-43fb-a8b8-bf463be93d2b",
+            "sourceColumn": "Account ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Account Name",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c81730b9-4c43-4e0b-a806-6195bb717dd3",
+            "sourceColumn": "Account Name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Balance",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "7aa980f9-574b-4f44-970c-52da02531269",
+            "sourceColumn": "Balance",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Balance Type",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "fa59fb90-790c-42c0-8764-980a1a860884",
+            "sourceColumn": "Balance Type",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Final Balance",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "060feba2-6c84-4f72-a8af-aa66458a667f",
+            "sourceColumn": "Final Balance",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "ACT ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "6a1e54d0-3524-4d8d-9d4b-259e87e9639c",
+            "sourceColumn": "ACT ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "SA ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "27f36379-021d-4a0c-b8da-a932d65d9061",
+            "sourceColumn": "SA ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "FS ID",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "2f9719fb-07d5-4c65-a211-ffd803d6376b",
+            "sourceColumn": "FS ID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Account Categories",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "654f7a0f-2997-464f-a11d-3c8c1e6a7a74",
+            "sourceColumn": "Account Categories",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Sub Account",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f68f1b9f-8665-4962-b2a4-b36ee5179026",
+            "sourceColumn": "Sub Account",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Financial Statements",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "df562111-b65c-4fc8-9b27-eeafd12ad344",
+            "sourceColumn": "Financial Statements",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "173d1d85-8f98-4522-8220-0b7d7063cbfb",
+        "partitions": [
+          {
+            "name": "TB_New",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(\"https://drive.google.com/uc?export=download&id=10L1ckm1J6DY8zyEJD0DgZ-bdC389ThnM\"),[Delimiter=\",\", Columns=11, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Account ID\", type text}, {\"Account Name\", type text}, {\"Balance\", Int64.Type}, {\"Balance Type\", type text}, {\"Final Balance\", Int64.Type}, {\"ACT ID\", type text}, {\"SA ID\", type text}, {\"FS ID\", type text}, {\"Account Categories\", type text}, {\"Sub Account\", type text}, {\"Financial Statements\", type text}})",
+                "in",
+                "    #\"Changed Type\""
+              ],
+              "type": "m"
             }
           }
         ]
