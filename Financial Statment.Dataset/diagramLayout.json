@@ -75,19 +75,6 @@
         },
         {
           "location": {
-            "x": 259.92006141116428,
-            "y": 332.84243860732295
-          },
-          "nodeIndex": "Calender Amlan",
-          "nodeLineageTag": "497aed6c-7065-47a3-8157-29716497dd02",
-          "size": {
-            "height": 200,
-            "width": 234
-          },
-          "zIndex": 5
-        },
-        {
-          "location": {
             "x": 682.720005582833,
             "y": 258.18911830060023
           },
@@ -209,6 +196,18 @@
             "y": 285.52220283430381
           },
           "nodeIndex": "Alamgir Measures",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 259.92006141116428,
+            "y": 332.84243860732295
+          },
+          "nodeIndex": "Calendar Amlan",
           "size": {
             "height": 200,
             "width": 234

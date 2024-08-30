@@ -65,7 +65,7 @@
       {
         "name": "6f0caf64-59f7-4ccf-8476-b9553faea6ef",
         "fromColumn": "Date",
-        "fromTable": "Calender Amlan",
+        "fromTable": "Calendar Amlan",
         "joinOnDateBehavior": "datePartOnly",
         "toColumn": "Date",
         "toTable": "LocalDateTable_fffb432f-616a-4d3f-8023-d865878d3795"
@@ -75,7 +75,7 @@
         "fromColumn": "Date",
         "fromTable": "JR",
         "toColumn": "Date",
-        "toTable": "Calender Amlan"
+        "toTable": "Calendar Amlan"
       },
       {
         "name": "AutoDetected_b74d74aa-0a4e-4fbc-bce8-b2909aaf5c2d",
@@ -212,7 +212,7 @@
         "fromTable": "JR_New",
         "isActive": false,
         "toColumn": "Date",
-        "toTable": "Calender Amlan"
+        "toTable": "Calendar Amlan"
       },
       {
         "name": "148c0fe4-76af-3856-b1be-5b38679e06f3",
@@ -517,14 +517,14 @@
             "expression": [
               "",
               "VAR SelectedYear = ",
-              "    MAX('Calender Amlan'[Year]) // Using MAX to ensure a single year is selected",
+              "    MAX('Calendar Amlan'[Year]) // Using MAX to ensure a single year is selected",
               "RETURN",
               "IF(",
               "    NOT ISBLANK(SelectedYear), ",
               "    CALCULATE(",
               "        SUM(JR[Balance]),",
-              "        'Calender Amlan'[Year] = SelectedYear - 1,",
-              "        REMOVEFILTERS('Calender Amlan') // Ensuring no other filters interfere",
+              "        'Calendar Amlan'[Year] = SelectedYear - 1,",
+              "        REMOVEFILTERS('Calendar Amlan') // Ensuring no other filters interfere",
               "    ),",
               "    BLANK()",
               ")"
@@ -1138,7 +1138,7 @@
         ]
       },
       {
-        "name": "Calender Amlan",
+        "name": "Calendar Amlan",
         "annotations": [
           {
             "name": "PBI_Id",
@@ -1187,7 +1187,7 @@
               }
             ],
             "dataType": "int64",
-            "expression": "FORMAT('Calender Amlan'[Date],\"MM\")",
+            "expression": "FORMAT('Calendar Amlan'[Date],\"MM\")",
             "formatString": "0",
             "lineageTag": "86ca8217-d162-4de0-84c2-dfe162ac2cdf",
             "summarizeBy": "sum",
@@ -1202,7 +1202,7 @@
               }
             ],
             "dataType": "int64",
-            "expression": "FORMAT('Calender Amlan'[Date],\"YYYY\")",
+            "expression": "FORMAT('Calendar Amlan'[Date],\"YYYY\")",
             "formatString": "0",
             "lineageTag": "c0e1b1b0-766f-4f55-8f4f-1b7750f03499",
             "summarizeBy": "sum",
@@ -1212,7 +1212,7 @@
         "lineageTag": "497aed6c-7065-47a3-8157-29716497dd02",
         "partitions": [
           {
-            "name": "Calender Amlan",
+            "name": "Calendar Amlan",
             "mode": "import",
             "source": {
               "expression": "CALENDAR(MIN(JR[Date]),MAX(JR[Date]))",
@@ -1415,7 +1415,7 @@
             "name": "LocalDateTable_fffb432f-616a-4d3f-8023-d865878d3795",
             "mode": "import",
             "source": {
-              "expression": "Calendar(Date(Year(MIN('Calender Amlan'[Date])), 1, 1), Date(Year(MAX('Calender Amlan'[Date])), 12, 31))",
+              "expression": "Calendar(Date(Year(MIN('Calendar Amlan'[Date])), 1, 1), Date(Year(MAX('Calendar Amlan'[Date])), 12, 31))",
               "type": "calculated"
             }
           }
@@ -2766,6 +2766,77 @@
             "expression": "CALCULATE(SUM(JR_New[Balance]),FILTER(JR_New,JR_New[Sub Account]=\"Operating Expense\"))",
             "formatString": "0",
             "lineageTag": "8859a755-aa27-4988-9cd4-abce6c125ead"
+          },
+          {
+            "name": "Total OpEx",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    SUM(JR_New[Dr Amount]) - SUM(JR_New[Cr Amount]),",
+              "    FILTER(",
+              "        ALL(JR_New[Sub Account]),",
+              "        JR_New[Sub Account] IN {\"Operating Expense\"}",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "929c94a6-22ef-4029-af89-29c872334600"
+          },
+          {
+            "name": "YTD OpEx",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Total OpEx],",
+              "    FILTER(",
+              "        ALL('Calendar Amlan'[Date]),",
+              "        'Calendar Amlan'[Date] <= MAX('Calendar Amlan'[Date])",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "745f2750-57c4-410b-87bc-ba0d0766fa50"
+          },
+          {
+            "name": "PY OpEx",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Total OpEx],",
+              "    DATEADD('Calendar Amlan'[Date], -1, YEAR)",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "572bfefe-c7cc-458f-b89b-1ecb1ace3a96"
+          },
+          {
+            "name": "OpEx Var%",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "DIVIDE(",
+              "    [Total OpEx] - [PY OpEx],",
+              "    [PY OpEx]",
+              ")"
+            ],
+            "lineageTag": "3ee3d3c0-a0b1-4b27-903f-5d9841bd57a0"
+          },
+          {
+            "name": "MoM OpEx",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Total OpEx],",
+              "    DATEADD('Calendar Amlan'[Date], -1, MONTH)",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "649470ac-5610-4ab5-ad5c-20f2a28ce68a"
           }
         ],
         "partitions": [
