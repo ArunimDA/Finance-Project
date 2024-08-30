@@ -2168,6 +2168,35 @@
           {
             "name": "Year",
             "lineageTag": "be70991d-195f-4ced-9060-db6dde1a5b19"
+          },
+          {
+            "name": "Total Cashflow",
+            "expression": "CALCULATE(SUM(JR[Balance]), JR[Cash flow Status] = \"Cash Inflow\") + CALCULATE(SUM(JR[Balance]), JR[Cash flow Status] = \"Cash Outfow\")",
+            "formatString": "0",
+            "lineageTag": "a11ffb2e-ec32-4c0d-9776-aed7c567d004"
+          },
+          {
+            "name": "Total Cash Inflow",
+            "expression": "CALCULATE(SUM(JR[Balance]),JR[Cash flow Status] = \"Cash Inflow\")",
+            "formatString": "0",
+            "lineageTag": "791772a4-203b-4093-8f7c-a3d6b94c2966"
+          },
+          {
+            "name": "Total Cash Outflow",
+            "expression": "CALCULATE(SUM(JR[Balance]), JR[Cash flow Status] = \"Cash Outfow\")",
+            "formatString": "0",
+            "lineageTag": "baa0b505-c824-4b59-9db3-d9568a3b9641"
+          },
+          {
+            "name": "Net Cashflow",
+            "expression": "CALCULATE(SUM(JR[Balance]), JR[Cash flow Status] = \"Cash Inflow\") - CALCULATE(SUM(JR[Balance]), JR[Cash flow Status] = \"Cash Outfow\")",
+            "formatString": "0",
+            "lineageTag": "46941b88-06c4-49ad-b142-9b1dc4bd8af3"
+          },
+          {
+            "name": "Current Ratio",
+            "expression": "DIVIDE(SUM(JR[Balance]), )",
+            "lineageTag": "db092356-0e9a-4986-aa40-b33543420a47"
           }
         ],
         "partitions": [
@@ -2555,11 +2584,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          }
-        ],
-        "changedProperties": [
-          {
-            "property": "Name"
           }
         ],
         "columns": [
