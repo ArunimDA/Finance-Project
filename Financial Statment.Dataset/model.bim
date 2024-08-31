@@ -2161,6 +2161,22 @@
             "sourceColumn": "[Column]",
             "summarizeBy": "sum",
             "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Net Working Capital",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": "[Current Assets] - [Current Liabilities]",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "f076f786-9ab9-4a0f-a5e0-0fc00b959097",
+            "summarizeBy": "sum",
+            "type": "calculated"
           }
         ],
         "lineageTag": "8287e415-185b-4b08-988d-a2fbef8931ab",
@@ -2194,9 +2210,106 @@
             "lineageTag": "46941b88-06c4-49ad-b142-9b1dc4bd8af3"
           },
           {
-            "name": "Current Ratio",
-            "expression": "DIVIDE(SUM(JR[Balance]), )",
-            "lineageTag": "db092356-0e9a-4986-aa40-b33543420a47"
+            "name": "Liquidity Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "DIVIDE(SUM('Badsha Table'[current asset]), SUM('Badsha Table'[current liabilities]))",
+            "lineageTag": "b0790146-62a5-4f48-a533-05db83be8c48"
+          },
+          {
+            "name": "Gross Profit",
+            "expression": "CALCULATE([Total Revenue] - [Total COGS])",
+            "formatString": "0",
+            "lineageTag": "73aa1c12-fe62-423f-aeef-b3d51697baf8"
+          },
+          {
+            "name": "Gross Profit Margin",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "DIVIDE([Gross Profit], [Total Revenue])",
+            "lineageTag": "cd727fa9-9272-4a3e-b6fe-ed8c87b698c1"
+          },
+          {
+            "name": "Operating Profit",
+            "expression": "[Gross Profit] - [Total Operating Expense]",
+            "formatString": "0",
+            "lineageTag": "9ab569be-aff7-4bda-8f33-822fd6b479b6"
+          },
+          {
+            "name": "Operating Profit Margin",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "DIVIDE([Operating Profit], [Total Revenue])",
+            "lineageTag": "932af213-872b-478a-9bf2-25239096866a"
+          },
+          {
+            "name": "Net Profit Margin",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "DIVIDE([Net Profit], [Total Revenue])",
+            "lineageTag": "48c8a76c-3132-4600-898b-b99deb1ab112"
+          },
+          {
+            "name": "ReturnOn Assets (ROA)",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "DIVIDE([Net Profit], [Total Asset])",
+            "lineageTag": "ae621f0d-61ad-426b-a115-f81f49b8521f"
+          },
+          {
+            "name": "Total Current Assets",
+            "expression": "CALCULATE(SUM(TB[Balance]),TB,TB[Sub Account] = \"Current Assets\")",
+            "formatString": "0",
+            "lineageTag": "134a09d8-2b73-4550-865c-cba5e309ee21"
+          },
+          {
+            "name": "Total Non Current Assets",
+            "expression": "CALCULATE(SUM(TB[Balance]),TB,TB[Sub Account] = \"Non Current Assets\")",
+            "formatString": "0",
+            "lineageTag": "82c3f91f-b428-44cf-b1d0-02de0dd5498c"
+          },
+          {
+            "name": "Total Equity",
+            "expression": "CALCULATE(SUM(TB[Balance]),TB,TB[Sub Account] = \"Equity\")",
+            "formatString": "0",
+            "lineageTag": "e529ba2e-b7ab-43ca-9e9a-2431b446f0d2"
+          },
+          {
+            "name": "Total Asset",
+            "expression": "[Total Current Assets] + [Total Non Current Assets]",
+            "formatString": "0",
+            "lineageTag": "07d91208-5dda-4d39-853a-1b883befb064"
+          },
+          {
+            "name": "ReturnOn Equity (ROE)",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "DIVIDE([Net Profit], [Total Equity])",
+            "lineageTag": "da94e2f3-1df3-43a7-aab3-f7dc8d9e7dc1"
           }
         ],
         "partitions": [
@@ -2866,6 +2979,77 @@
         "partitions": [
           {
             "name": "Alamgir Measures",
+            "mode": "import",
+            "source": {
+              "expression": "Row(\"Column\", BLANK())",
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Badsha Table",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "d0b9314bf9f04bc0b10490a1360574a4"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Column",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "48c045c7-a112-468a-8b7c-d42e20d6968c",
+            "sourceColumn": "[Column]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "current asset",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": "CALCULATE(SUM(JR[Balance]), JR[Sub Account] IN {\"Current Assets\"})",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "3fd6e2f5-4029-4f37-abe5-8f2093ab9337",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          },
+          {
+            "name": "current liabilities",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": "CALCULATE(SUM(JR[Balance]), JR[Sub Account] IN {\"Current Liabilities\"})",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "c4d0097e-b18d-4edf-93e4-b337c36789cd",
+            "summarizeBy": "sum",
+            "type": "calculated"
+          }
+        ],
+        "lineageTag": "69bad083-a080-438d-968a-9924664b7453",
+        "partitions": [
+          {
+            "name": "Badsha Table",
             "mode": "import",
             "source": {
               "expression": "Row(\"Column\", BLANK())",
