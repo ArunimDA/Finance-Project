@@ -2375,6 +2375,12 @@
             "expression": "CALCULATE(SUM(JR[Balance]),FILTER(JR,JR[Account Name]=\"Accounts Receivable\"))",
             "formatString": "0.00",
             "lineageTag": "dc8d4c6c-d609-4bb3-983d-dc107d067eda"
+          },
+          {
+            "name": "Fixed Assests",
+            "expression": "CALCULATE(SUM(JR[Balance]),FILTER(JR,JR[Sub Account]=\"Non Current Assests\"))",
+            "formatString": "0",
+            "lineageTag": "8e81ea59-4462-4f6a-a2ff-d20b21f5255c"
           }
         ],
         "partitions": [
