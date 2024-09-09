@@ -2781,8 +2781,145 @@
                 "value": "{\"isGeneralNumber\":true}"
               }
             ],
-            "expression": "CALCULATE(SUM(JR_N[Net Balance]),FILTER(JR_N,JR_N[Account Categories]=\"Operating Expense\"))",
+            "expression": "CALCULATE(SUM(JR_N[Net Balance]),FILTER(JR_N,JR_N[Sub Account]=\"Operating Expense\"))",
             "lineageTag": "5554f5c9-23d2-496b-ac82-aa818e48394f"
+          },
+          {
+            "name": "Total Operating Cost",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    SUM(JR_N[Dr Amount]) - SUM(JR_N[Cr Amount]),",
+              "    FILTER(",
+              "        ALL(JR_N[Sub Account]),",
+              "        JR_N[Sub Account] IN {\"Operating Expense\"}",
+              "    )",
+              ")"
+            ],
+            "lineageTag": "4dddf623-974d-4a24-8554-e64ba2c213d3"
+          },
+          {
+            "name": "YTD Operating Exp",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Total Operating Cost],",
+              "    FILTER(",
+              "        ALL('Calender Amlan'[Date]),",
+              "        'Calender Amlan'[Date] <= MAX('Calender Amlan'[Date])",
+              "    )",
+              ")"
+            ],
+            "lineageTag": "4b7969a4-3a64-48a4-9915-19a2da356f82"
+          },
+          {
+            "name": "PY Operating Exp",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Total Operating Expense],",
+              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "4a3e1d5f-9f58-44e2-a7b0-e2217cb43864"
+          },
+          {
+            "name": "OE Variance%",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "DIVIDE(",
+              "    [Total Operating Expense] - [PY Operating Exp],",
+              "    [PY Operating Exp]",
+              ")"
+            ],
+            "lineageTag": "d30c22ef-3f89-4cae-9ad2-e3b58eef17f6"
+          },
+          {
+            "name": "MoM Operating Exp",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Total Operating Expense],",
+              "    DATEADD('Calender Amlan'[Date], -1, MONTH)",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "ef744c21-2dd6-4be2-b7ee-ffcf0443262b"
+          },
+          {
+            "name": "YTD Profit",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Net Profit],",
+              "    FILTER(",
+              "        ALL('Calender Amlan'[Date]),",
+              "        'Calender Amlan'[Date] <= MAX('Calender Amlan'[Date])",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "44e68d9a-5449-4b39-8954-c914e0734aca"
+          },
+          {
+            "name": "PY Profit",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Net Profit],",
+              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "415cb6d0-4234-46a4-bcf7-3adaa56e9b0c"
+          },
+          {
+            "name": "Profit Variance%",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "DIVIDE(",
+              "    [Net Profit] - [PY Profit],",
+              "    [PY Profit]",
+              ")"
+            ],
+            "lineageTag": "d62bfe98-e2bf-496b-b6f7-84ebf113b8cc"
+          },
+          {
+            "name": "MoM Profit",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Net Profit],",
+              "    DATEADD('Calender Amlan'[Date], -1, MONTH)",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "6bfcffa2-3b14-4ba3-8e41-3d1630bc5d56"
           }
         ],
         "partitions": [

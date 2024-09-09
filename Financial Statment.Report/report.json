@@ -375,11 +375,11 @@
       "ordinal": 5,
       "visualContainers": [
         {
-          "config": "{\"name\":\"99d6a82b5dda50e3d096\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10,\"y\":0,\"width\":280,\"height\":280,\"z\":0,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Alamgir Measures.Total Operating Expense\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a1\",\"Entity\":\"Alamgir Measures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a1\"}},\"Property\":\"Total Operating Expense\"},\"Name\":\"Alamgir Measures.Total Operating Expense\",\"NativeReferenceName\":\"Total Operating Expense\"}]},\"drillFilterOtherVisuals\":true}}",
+          "config": "{\"name\":\"99d6a82b5dda50e3d096\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10.442890442890443,\"y\":0,\"z\":0,\"width\":1060.6993006993007,\"height\":280.46620046620046,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"Amlan Measure.Net Profit\"},{\"queryRef\":\"Alamgir Measures.YTD Profit\"},{\"queryRef\":\"Alamgir Measures.PY Profit\"},{\"queryRef\":\"Alamgir Measures.Profit Variance%\"},{\"queryRef\":\"Alamgir Measures.MoM Profit\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"a\",\"Entity\":\"Amlan Measure\",\"Type\":0},{\"Name\":\"a1\",\"Entity\":\"Alamgir Measures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a\"}},\"Property\":\"Net Profit\"},\"Name\":\"Amlan Measure.Net Profit\",\"NativeReferenceName\":\"Net Profit\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a1\"}},\"Property\":\"YTD Profit\"},\"Name\":\"Alamgir Measures.YTD Profit\",\"NativeReferenceName\":\"YTD Profit\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a1\"}},\"Property\":\"PY Profit\"},\"Name\":\"Alamgir Measures.PY Profit\",\"NativeReferenceName\":\"PY Profit\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a1\"}},\"Property\":\"Profit Variance%\"},\"Name\":\"Alamgir Measures.Profit Variance%\",\"NativeReferenceName\":\"Profit Variance%\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"a1\"}},\"Property\":\"MoM Profit\"},\"Name\":\"Alamgir Measures.MoM Profit\",\"NativeReferenceName\":\"MoM Profit\"}]},\"drillFilterOtherVisuals\":true}}",
           "filters": "[]",
-          "height": 280.00,
-          "width": 280.00,
-          "x": 10.00,
+          "height": 280.47,
+          "width": 1060.70,
+          "x": 10.44,
           "y": 0.00,
           "z": 0.00
         }
