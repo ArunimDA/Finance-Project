@@ -131,26 +131,11 @@
         "toTable": "TB"
       },
       {
-        "name": "AutoDetected_6db90292-0510-4afb-9041-1ba20806754d",
-        "fromColumn": "Journal ID",
-        "fromTable": "JR_N",
-        "toColumn": "Journal ID",
-        "toTable": "JR"
-      },
-      {
         "name": "AutoDetected_d6ef1357-4bb3-426d-95dc-ea107800f51c",
         "fromColumn": "Sub Account",
         "fromTable": "TB_N",
         "toColumn": "Sub Account",
         "toTable": "SAC"
-      },
-      {
-        "name": "AutoDetected_afb93bd9-0ac3-4ce7-82fd-ef12a55cc842",
-        "fromColumn": "Account ID",
-        "fromTable": "JR",
-        "isActive": false,
-        "toColumn": "Account ID",
-        "toTable": "TB_N"
       },
       {
         "name": "AutoDetected_7fb49b83-784f-425d-bf62-8360950b1b8d",
@@ -183,6 +168,89 @@
         "isActive": false,
         "toColumn": "Balance",
         "toTable": "TB_N"
+      },
+      {
+        "name": "1721dad6-1807-eebd-b117-5163a7aaee53",
+        "fromColumn": "Account Name",
+        "fromTable": "JR_N",
+        "isActive": false,
+        "toColumn": "Account Name",
+        "toTable": "TB"
+      },
+      {
+        "name": "7fb1570b-99b4-e7b4-5d1f-d3aa17bd2793",
+        "fromColumn": "Account Name",
+        "fromTable": "JR_N",
+        "isActive": false,
+        "toColumn": "Account Name",
+        "toTable": "TB_N"
+      },
+      {
+        "name": "175c383c-d124-e595-c2f6-c18de7e907f3",
+        "fromColumn": "FS ID",
+        "fromTable": "JR_N",
+        "isActive": false,
+        "toColumn": "FS ID",
+        "toTable": "FS"
+      },
+      {
+        "name": "5c51f80f-e6f3-da43-6b0e-d5000dffd6ba",
+        "fromColumn": "ACT ID",
+        "fromTable": "JR_N",
+        "toColumn": "ACT ID",
+        "toTable": "AC"
+      },
+      {
+        "name": "fc3cce51-0553-0496-d64d-be68241d6c5d",
+        "fromColumn": "Date",
+        "fromTable": "JR_N",
+        "toColumn": "Date",
+        "toTable": "Calender Amlan"
+      },
+      {
+        "name": "110357b4-f48f-aecf-6b7d-a0f66a8205f8",
+        "fromColumn": "Account Name",
+        "fromTable": "JR_N",
+        "isActive": false,
+        "toColumn": "Account Name",
+        "toTable": "JR (2)"
+      },
+      {
+        "name": "AutoDetected_a33e9b90-4b7a-422c-9ada-a6ad1486e453",
+        "fromColumn": "Sub Account",
+        "fromTable": "JR",
+        "toColumn": "Sub Account",
+        "toTable": "SAC_N"
+      },
+      {
+        "name": "AutoDetected_132cbc65-be81-4315-a351-7e10b9fbfa22",
+        "fromColumn": "Sub Account",
+        "fromTable": "TB",
+        "isActive": false,
+        "toColumn": "Sub Account",
+        "toTable": "SAC_N"
+      },
+      {
+        "name": "AutoDetected_cb13b04b-bd5a-4544-8bea-de78427343e0",
+        "fromColumn": "Sub Account",
+        "fromTable": "TB_N",
+        "toColumn": "Sub Account",
+        "toTable": "SAC_N"
+      },
+      {
+        "name": "7c60a20d-3ac5-177d-dea7-058ba5259cf0",
+        "fromColumn": "SA ID",
+        "fromTable": "JR_N",
+        "toColumn": "SA ID",
+        "toTable": "SAC_N"
+      },
+      {
+        "name": "173a8e23-f45f-4215-55bd-929bb3c0022e",
+        "fromColumn": "SA ID",
+        "fromTable": "JR_N",
+        "isActive": false,
+        "toColumn": "SA ID",
+        "toTable": "SAC"
       }
     ],
     "sourceQueryCulture": "en-US",
@@ -2186,16 +2254,15 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          }
-        ],
-        "changedProperties": [
+          },
           {
-            "property": "Name"
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
           {
-            "name": "Column1",
+            "name": "Sub Account",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
@@ -2203,12 +2270,12 @@
               }
             ],
             "dataType": "string",
-            "lineageTag": "3f0ae402-9508-4997-a7f7-400d48d56ca8",
-            "sourceColumn": "Column1",
+            "lineageTag": "2b7bdb4e-3fa4-4dff-a3e1-12983b993ebd",
+            "sourceColumn": "Sub Account",
             "summarizeBy": "none"
           },
           {
-            "name": "Column2",
+            "name": "SA ID",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
@@ -2216,8 +2283,8 @@
               }
             ],
             "dataType": "string",
-            "lineageTag": "9cf4a55f-7402-48e7-8a1f-88aaa8cbb2e9",
-            "sourceColumn": "Column2",
+            "lineageTag": "8ac124ed-2879-4d07-80ce-52d79f59e47a",
+            "sourceColumn": "SA ID",
             "summarizeBy": "none"
           }
         ],
@@ -2230,9 +2297,11 @@
               "expression": [
                 "let",
                 "    Source = Csv.Document(Web.Contents(\"https://drive.google.com/uc?export=download&id=1d-D9mC-L5gJH1pwDzl6CeGtLEIonccte\"),[Delimiter=\",\", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}, {\"Column2\", type text}})",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}, {\"Column2\", type text}}),",
+                "    #\"Promoted Headers\" = Table.PromoteHeaders(#\"Changed Type\", [PromoteAllScalars=true]),",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Sub Account\", type text}, {\"SA ID\", type text}})",
                 "in",
-                "    #\"Changed Type\""
+                "    #\"Changed Type1\""
               ],
               "type": "m"
             }
@@ -2245,11 +2314,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          }
-        ],
-        "changedProperties": [
+          },
           {
-            "property": "Name"
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -2278,7 +2346,7 @@
             "formatString": "0",
             "lineageTag": "6fa41f77-ab3e-482a-b964-ace3e45ae2ad",
             "sourceColumn": "Date",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "Account Name",
@@ -2301,7 +2369,7 @@
                 "value": "Automatic"
               }
             ],
-            "dataType": "int64",
+            "dataType": "double",
             "formatString": "0",
             "lineageTag": "886ce78b-e8fa-42ca-963d-299dce7ea457",
             "sourceColumn": "Dr Amount",
@@ -2315,7 +2383,7 @@
                 "value": "Automatic"
               }
             ],
-            "dataType": "int64",
+            "dataType": "double",
             "formatString": "0",
             "lineageTag": "8acafce8-d3c2-4107-a64b-c49efd0aa51d",
             "sourceColumn": "Cr Amount",
@@ -2438,6 +2506,34 @@
             "lineageTag": "2109cf09-aefa-4c64-9b53-bb0f1082e765",
             "sourceColumn": "Financial Statements",
             "summarizeBy": "none"
+          },
+          {
+            "name": "Balance",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "3be8c069-014a-4348-8d39-66c2c0692c14",
+            "sourceColumn": "Balance",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Net Balance",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "46970995-2c74-4a03-8800-587b644d06df",
+            "sourceColumn": "Net Balance",
+            "summarizeBy": "sum"
           }
         ],
         "lineageTag": "698f91cb-afe3-4475-a50b-365ad2d15231",
@@ -2450,9 +2546,15 @@
                 "let",
                 "    Source = Csv.Document(Web.Contents(\"https://drive.google.com/uc?export=download&id=1v0FZwY8rncl1QWTZGffaS0OZ275GfIVM \"),[Delimiter=\",\", Columns=14, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Journal ID\", type text}, {\"Date\", Int64.Type}, {\"Account Name\", type text}, {\"Dr Amount\", Int64.Type}, {\"Cr Amount\", Int64.Type}, {\"Details\", type text}, {\"Cash flow statement operator\", type text}, {\"Cash flow Amount\", Int64.Type}, {\"ACT ID\", type text}, {\"SA ID\", type text}, {\"FS ID\", type text}, {\"Account Categories\", type text}, {\"Sub Account\", type text}, {\"Financial Statements\", type text}})",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Journal ID\", type text}, {\"Date\", Int64.Type}, {\"Account Name\", type text}, {\"Dr Amount\", Int64.Type}, {\"Cr Amount\", Int64.Type}, {\"Details\", type text}, {\"Cash flow statement operator\", type text}, {\"Cash flow Amount\", Int64.Type}, {\"ACT ID\", type text}, {\"SA ID\", type text}, {\"FS ID\", type text}, {\"Account Categories\", type text}, {\"Sub Account\", type text}, {\"Financial Statements\", type text}}),",
+                "    #\"Replaced Value\" = Table.ReplaceValue(#\"Changed Type\",null,\"0\",Replacer.ReplaceValue,{\"Journal ID\"}),",
+                "    #\"Replaced Value1\" = Table.ReplaceValue(#\"Replaced Value\",null,0,Replacer.ReplaceValue,{\"Dr Amount\"}),",
+                "    #\"Replaced Value2\" = Table.ReplaceValue(#\"Replaced Value1\",null,0,Replacer.ReplaceValue,{\"Cr Amount\"}),",
+                "    #\"Added Custom\" = Table.AddColumn(#\"Replaced Value2\", \"Balance\", each [Cr Amount]-[Dr Amount]),",
+                "    #\"Added Custom1\" = Table.AddColumn(#\"Added Custom\", \"Net Balance\", each if [Balance] < 0 then [Balance]*-1 else [Balance]),",
+                "    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Added Custom1\",{{\"Balance\", Int64.Type}, {\"Net Balance\", Int64.Type}})",
                 "in",
-                "    #\"Changed Type\""
+                "    #\"Changed Type1\""
               ],
               "type": "m"
             }
@@ -2634,6 +2736,62 @@
                 "    #\"Changed Type\""
               ],
               "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Alamgir Measures",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "21701e88fa3347c7a702516215568255"
+          },
+          {
+            "name": "436ba87b-9c83-4389-a31b-ebd06a36be98",
+            "value": "{\"Expression\":\"\"}"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Column",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "b25b439a-f1b1-47a2-b13b-97d5a4db65ea",
+            "sourceColumn": "[Column]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "lineageTag": "86e98f03-de43-4dc6-9af7-02dab15ea472",
+        "measures": [
+          {
+            "name": "Total Operating Expense",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "CALCULATE(SUM(JR_N[Net Balance]),FILTER(JR_N,JR_N[Account Categories]=\"Operating Expense\"))",
+            "lineageTag": "5554f5c9-23d2-496b-ac82-aa818e48394f"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Alamgir Measures",
+            "mode": "import",
+            "source": {
+              "expression": "Row(\"Column\", BLANK())",
+              "type": "calculated"
             }
           }
         ]
