@@ -2915,6 +2915,18 @@
             ],
             "formatString": "0",
             "lineageTag": "6bfcffa2-3b14-4ba3-8e41-3d1630bc5d56"
+          },
+          {
+            "name": "COGS",
+            "expression": "[Total Expense]-[Total Operating Expense]",
+            "formatString": "0",
+            "lineageTag": "a650a2ba-d4e1-4192-a4bc-bc8c7ba45ec7"
+          },
+          {
+            "name": "Gross Profit",
+            "expression": "[Total Revenue] - [COGS]",
+            "formatString": "0",
+            "lineageTag": "52308571-315d-4280-9af2-05415a98b8e5"
           }
         ],
         "partitions": [
