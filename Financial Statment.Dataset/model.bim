@@ -2206,6 +2206,18 @@
             "expression": "CALCULATE(SUM(JR[Balance]),FILTER(JR,JR[Cash flow Status]=\"Cash Outfow\"))",
             "formatString": "0.00",
             "lineageTag": "e22d3b6f-3043-4c18-90ae-12a4d78d880d"
+          },
+          {
+            "name": "Payable",
+            "expression": "CALCULATE(SUM(JR[Balance]),FILTER(JR,JR[Account Name]=\"Accounts Payable\"))",
+            "formatString": "0.000",
+            "lineageTag": "65cf62d8-5378-4d33-9b56-fdbab1b2c594"
+          },
+          {
+            "name": "Recivable",
+            "expression": "CALCULATE(SUM(JR[Balance]),FILTER(JR,JR[Account Name]=\"Accounts Receivable\"))",
+            "formatString": "0.000",
+            "lineageTag": "970f3bc1-7384-4e2d-859b-1587c8f3e777"
           }
         ],
         "partitions": [
