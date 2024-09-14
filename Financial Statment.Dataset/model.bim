@@ -3117,6 +3117,154 @@
               "DIVIDE([Total Debt], [Gross Profit])"
             ],
             "lineageTag": "8e92156b-369b-4948-ab3d-ff5f49231e4d"
+          },
+          {
+            "name": "Total Interest Expense",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    SUM(JR_N[Net Balance]),",
+              "    FILTER(",
+              "        ALL(JR_N[Account Name]),",
+              "        JR_N[Account Name] IN {\"Utility expense\"}",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "d72c45e7-e500-4dc5-bc43-74f82c5bfa2d"
+          },
+          {
+            "name": "Interest Coverage Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "DIVIDE([Gross Profit], [Total Interest Expense])"
+            ],
+            "lineageTag": "a9a5cd75-3c7b-4d0c-a534-e51dc535814c"
+          },
+          {
+            "name": "LY Asset Turnover Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Asset Turnover Ratio],",
+              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
+              ")"
+            ],
+            "lineageTag": "6661bf6f-c7ef-4fbd-9504-80dcc5c17f9d"
+          },
+          {
+            "name": "LY Debt-Equity Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Debt-Equity Ratio],",
+              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
+              ")"
+            ],
+            "lineageTag": "53b6b6e5-f289-477b-81ff-38a5ad19c3b6"
+          },
+          {
+            "name": "LY ROA Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [ROA Ratio],",
+              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
+              ")"
+            ],
+            "lineageTag": "c8a1a27c-7e6f-4799-abf3-3f21aa813170"
+          },
+          {
+            "name": "LY ROE Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [ROE Ratio],",
+              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
+              ")"
+            ],
+            "lineageTag": "d26968bb-5dd0-4940-b2bb-97f0e5185215"
+          },
+          {
+            "name": "LY Debt-Asset Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Debt-Asset Ratio],",
+              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
+              ")"
+            ],
+            "lineageTag": "72d3f0d4-d8d9-4db0-b22e-b10778d99681"
+          },
+          {
+            "name": "LY Debt-Earning Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Debt-Earning Ratio],",
+              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
+              ")"
+            ],
+            "lineageTag": "e1177c17-d46c-48cb-89d0-3ce5db69a02e"
+          },
+          {
+            "name": "LY Interest Coverage Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Interest Coverage Ratio],",
+              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
+              ")"
+            ],
+            "lineageTag": "a67ecb3f-d6af-45d3-982e-e0d3c88e7a49"
           }
         ],
         "partitions": [
