@@ -2206,8 +2206,6 @@
             "expression": "CALCULATE(SUM(JR[Balance]),FILTER(JR,JR[Cash flow Status]=\"Cash Outfow\"))",
             "formatString": "0.00",
             "lineageTag": "e22d3b6f-3043-4c18-90ae-12a4d78d880d"
-<<<<<<< HEAD
-=======
           },
           {
             "name": "Payable",
@@ -2232,7 +2230,6 @@
             "expression": "[Fixed Assests]/[Total Balance]",
             "formatString": "0.00%;-0.00%;0.00%",
             "lineageTag": "e8f16b4f-caf9-4e75-a4ff-85d31f8bbc8c"
->>>>>>> b9726cc59fb634da7fef6e75438ccd9944beb212
           }
         ],
         "partitions": [
@@ -2973,18 +2970,6 @@
             ],
             "formatString": "0",
             "lineageTag": "4c2d8899-ba84-45d8-a2f1-44716011ef78"
-          },
-          {
-            "name": "PM Profit",
-            "expression": [
-              "",
-              "CALCULATE(",
-              "    [Net Profit],",
-              "    DATEADD('Calender Amlan'[Date], -1, MONTH)",
-              ")"
-            ],
-            "formatString": "0",
-            "lineageTag": "c5f32004-5b16-4868-8c39-03fde457777b"
           }
         ],
         "partitions": [
