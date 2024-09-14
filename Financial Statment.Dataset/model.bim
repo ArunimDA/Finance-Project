@@ -2982,6 +2982,141 @@
             ],
             "formatString": "0",
             "lineageTag": "d51802af-5ac3-460d-a942-fbf96c696242"
+          },
+          {
+            "name": "Total Assets",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    SUM(JR_N[Net Balance]),",
+              "    FILTER(",
+              "        ALL(JR_N[Account Categories]),",
+              "        JR_N[Account Categories] IN {\"Assets\"}",
+              "    )",
+              ")"
+            ],
+            "lineageTag": "73a19493-0b48-4c6a-9c7a-a49874cd34c0"
+          },
+          {
+            "name": "Asset Turnover Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "    DIVIDE([Total Revenue], [Total Assets])"
+            ],
+            "lineageTag": "1046f297-945e-423b-b986-5fe9eca9f291"
+          },
+          {
+            "name": "Total Debt",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    SUM(JR_N[Net Balance]),",
+              "    FILTER(",
+              "        ALL(JR_N[Account Categories]),",
+              "        JR_N[Account Categories] IN {\"Liabilities\"}",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "08416715-7e30-4ad3-b88a-db4522c84009"
+          },
+          {
+            "name": "Total Equity",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    SUM(JR_N[Net Balance]),",
+              "    FILTER(",
+              "        ALL(JR_N[Account Categories]),",
+              "        JR_N[Account Categories] IN {\"Equity\"}",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "3b954f78-490a-44a1-b3a2-b3cbaef80233"
+          },
+          {
+            "name": "Debt-Equity Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "    DIVIDE([Total Debt], [Total Equity]",
+              "    )"
+            ],
+            "lineageTag": "fa56cc8e-afb4-4296-9b34-6d18f00fb851"
+          },
+          {
+            "name": "ROA Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "DIVIDE([Net Profit], [Total Assets])"
+            ],
+            "lineageTag": "05eb9f46-2ff2-4d5b-98c6-16ca15e41a94"
+          },
+          {
+            "name": "ROE Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "DIVIDE([Net Profit], [Total Equity])"
+            ],
+            "lineageTag": "a4222ba9-b838-4599-a1b4-fdbde5595db5"
+          },
+          {
+            "name": "Debt-Asset Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "    DIVIDE([Total Debt], [Total Assets])"
+            ],
+            "lineageTag": "d2d83ded-7d12-47bf-b11f-bd1904a81e23"
+          },
+          {
+            "name": "Debt-Earning Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "DIVIDE([Total Debt], [Gross Profit])"
+            ],
+            "lineageTag": "8e92156b-369b-4948-ab3d-ff5f49231e4d"
           }
         ],
         "partitions": [
