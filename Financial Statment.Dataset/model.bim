@@ -2221,7 +2221,7 @@
           },
           {
             "name": "Fixed Assests",
-            "expression": "CALCULATE(SUM(JR[Balance]),FILTER(JR_N,JR_N[Sub Account]=\"Non Current Assests\"))",
+            "expression": "CALCULATE(SUM(JR_N[Net Balance]),FILTER(JR_N,JR_N[Sub Account]=\"Non Current Assests\"))",
             "formatString": "0.000",
             "lineageTag": "81632566-397f-461b-912f-640abf384f9e"
           },
@@ -2230,6 +2230,18 @@
             "expression": "[Fixed Assests]/[Total Balance]",
             "formatString": "0.00%;-0.00%;0.00%",
             "lineageTag": "e8f16b4f-caf9-4e75-a4ff-85d31f8bbc8c"
+          },
+          {
+            "name": "Inventory",
+            "expression": "CALCULATE(SUM(JR_N[Net Balance]),FILTER(JR_N,JR_N[Account Name]=\"Inventory\"))",
+            "formatString": "0.000",
+            "lineageTag": "01f9ec76-1110-4cbf-8a69-71e8da73fb18"
+          },
+          {
+            "name": "Inventory %",
+            "expression": "[Inventory]/[Total Balance]",
+            "formatString": "0.0000000%;-0.0000000%;0.0000000%",
+            "lineageTag": "2d813ab0-2d06-4634-b5c7-6d15b7eef15c"
           }
         ],
         "partitions": [
