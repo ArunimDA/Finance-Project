@@ -2970,6 +2970,18 @@
             ],
             "formatString": "0",
             "lineageTag": "4c2d8899-ba84-45d8-a2f1-44716011ef78"
+          },
+          {
+            "name": "PM Profit",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Net Profit],",
+              "    DATEADD('Calender Amlan'[Date], -1, MONTH)",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "d51802af-5ac3-460d-a942-fbf96c696242"
           }
         ],
         "partitions": [
