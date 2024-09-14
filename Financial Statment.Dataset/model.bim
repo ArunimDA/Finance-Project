@@ -2206,18 +2206,6 @@
             "expression": "CALCULATE(SUM(JR[Balance]),FILTER(JR,JR[Cash flow Status]=\"Cash Outfow\"))",
             "formatString": "0.00",
             "lineageTag": "e22d3b6f-3043-4c18-90ae-12a4d78d880d"
-          },
-          {
-            "name": "Payable",
-            "expression": "CALCULATE(SUM(JR[Balance]),FILTER(JR,JR[Account Name]=\"Accounts Payable\"))",
-            "formatString": "0.000",
-            "lineageTag": "65cf62d8-5378-4d33-9b56-fdbab1b2c594"
-          },
-          {
-            "name": "Recivable",
-            "expression": "CALCULATE(SUM(JR[Balance]),FILTER(JR,JR[Account Name]=\"Accounts Receivable\"))",
-            "formatString": "0.000",
-            "lineageTag": "970f3bc1-7384-4e2d-859b-1587c8f3e777"
           }
         ],
         "partitions": [
@@ -2958,6 +2946,18 @@
             ],
             "formatString": "0",
             "lineageTag": "4c2d8899-ba84-45d8-a2f1-44716011ef78"
+          },
+          {
+            "name": "PM Profit",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Net Profit],",
+              "    DATEADD('Calender Amlan'[Date], -1, MONTH)",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "c5f32004-5b16-4868-8c39-03fde457777b"
           }
         ],
         "partitions": [
