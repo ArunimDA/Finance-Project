@@ -2151,8 +2151,120 @@
         "lineageTag": "8287e415-185b-4b08-988d-a2fbef8931ab",
         "measures": [
           {
-            "name": "Year",
+            "name": "Month",
+            "expression": "FORMAT()",
             "lineageTag": "be70991d-195f-4ced-9060-db6dde1a5b19"
+          },
+          {
+            "name": "Current Asset",
+            "expression": "CALCULATE(SUM(JR_N[Net Balance]),JR_N[Sub Account] = \"Current Assets\")",
+            "formatString": "0.00",
+            "lineageTag": "7887a252-7b51-47ad-b1d3-6ea94159134f"
+          },
+          {
+            "name": "Non Current Asset",
+            "expression": "CALCULATE(SUM(JR_N[Net Balance]),JR_N[Sub Account] = \"Non Current Assests\")",
+            "formatString": "0.00",
+            "lineageTag": "0a16dac2-04f5-4228-b62c-39eec9a0af88"
+          },
+          {
+            "name": "Total Asset",
+            "expression": "[Current Asset] + [Non Current Asset]",
+            "formatString": "0.00",
+            "lineageTag": "dc2349d2-93ca-49d2-bc88-549e01e16c3e"
+          },
+          {
+            "name": "Current Liability",
+            "expression": "CALCULATE(SUM(JR_N[Net Balance]),JR_N[Sub Account] = \"Current Liabilities\")",
+            "formatString": "0.00",
+            "lineageTag": "5273f373-e1e3-4b0c-8cbc-71a012325ee7"
+          },
+          {
+            "name": "Total Equities",
+            "expression": "CALCULATE(SUM(JR_N[Net Balance]),JR_N[Sub Account] = \"Equity\")",
+            "formatString": "0.00",
+            "lineageTag": "b660e861-e290-40ff-a6d7-7ec8fff6ce27"
+          },
+          {
+            "name": "Liabilites & Owner's Equity",
+            "expression": "[Current Liability] + [Total Equities] + [Net Profit]",
+            "formatString": "0.00",
+            "lineageTag": "72701d8b-cf00-478b-84b0-0808b742ea14"
+          },
+          {
+            "name": "Net Working Capital",
+            "expression": "[Current Asset] - [Current Liability]",
+            "formatString": "0",
+            "lineageTag": "7feec272-1690-4e0f-a99d-9e560b8a56d1"
+          },
+          {
+            "name": "PY NWC",
+            "expression": "CALCULATE([Net Working Capital],DATEADD('Calender Amlan'[Date], -1, YEAR))",
+            "formatString": "0",
+            "lineageTag": "f34d3648-f97f-4d76-9f4c-d9ca0f3b8362"
+          },
+          {
+            "name": "NWC Targeted",
+            "expression": "7000000",
+            "formatString": "0",
+            "lineageTag": "77a19314-3ad8-4320-89f4-9d8781b77ca6"
+          },
+          {
+            "name": "Current Ratio",
+            "expression": "DIVIDE([Current Asset],[Current Liability])",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "41d13466-f530-4bb2-be78-62104f04ceaa"
+          },
+          {
+            "name": "Inventory",
+            "expression": "CALCULATE(SUM(JR_N[Net Balance]),JR_N[Account Name] = \"Inventory\")",
+            "formatString": "0",
+            "lineageTag": "9242704d-5400-4ddd-859a-774933916ad7"
+          },
+          {
+            "name": "Quick Ratio",
+            "expression": "DIVIDE([Current Asset] - [Inventory],[Current Liability])",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "db78e059-a31e-4e2e-8668-a3ab7d2275b6"
+          },
+          {
+            "name": "Cash & Cash Equivalant",
+            "expression": "CALCULATE(SUM(JR_N[Net Balance]),JR_N[Account Name] IN {\"Cash\", \"Cash At Bank\", \"Share Capital\"})",
+            "formatString": "0",
+            "lineageTag": "8b0e5328-8d76-4e08-a49c-b6c9236dca81"
+          },
+          {
+            "name": "Cash Ratio",
+            "expression": "DIVIDE([Cash & Cash Equivalant],[Current Liability])",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "1fc02633-2533-4fa0-a751-cad7124c9a1b"
+          },
+          {
+            "name": "Gross Profit Margin",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "DIVIDE([Gross Profit],[Total Revenue])",
+            "lineageTag": "b9f516aa-737d-498e-b849-ad1993affb84"
+          },
+          {
+            "name": "Net Profit Margin",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": "DIVIDE([Net Profit],[Total Revenue])",
+            "lineageTag": "256fffd3-c331-472a-96b5-4e9ef9f157d1"
+          },
+          {
+            "name": "Operating Profit Margin",
+            "expression": "DIVIDE(operating)",
+            "lineageTag": "4f0de6e2-6791-42a8-bd6e-d763f3f304cc"
           }
         ],
         "partitions": [
@@ -2160,7 +2272,7 @@
             "name": "Badsha Measure",
             "mode": "import",
             "source": {
-              "expression": "Row(\"Column\", BLANK())",
+              "expression": "Row(\"Column\", BLANK()) ",
               "type": "calculated"
             }
           }
@@ -2235,6 +2347,504 @@
         "partitions": [
           {
             "name": "Ashraf Measure",
+            "mode": "import",
+            "source": {
+              "expression": "Row(\"Column\", BLANK())",
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Alamgir Measures",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "21701e88fa3347c7a702516215568255"
+          },
+          {
+            "name": "436ba87b-9c83-4389-a31b-ebd06a36be98",
+            "value": "{\"Expression\":\"\"}"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Column",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "b25b439a-f1b1-47a2-b13b-97d5a4db65ea",
+            "sourceColumn": "[Column]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "lineageTag": "86e98f03-de43-4dc6-9af7-02dab15ea472",
+        "measures": [
+          {
+            "name": "Total Operating Expense",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isDecimal\":true}"
+              }
+            ],
+            "expression": "CALCULATE(SUM(JR_N[Net Balance]),FILTER(JR_N,JR_N[Sub Account]=\"Operating Expense\"))",
+            "formatString": "0",
+            "lineageTag": "5554f5c9-23d2-496b-ac82-aa818e48394f"
+          },
+          {
+            "name": "Total Operating Cost",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    SUM(JR_N[Dr Amount]) - SUM(JR_N[Cr Amount]),",
+              "    FILTER(",
+              "        ALL(JR_N[Sub Account]),",
+              "        JR_N[Sub Account] IN {\"Operating Expense\"}",
+              "    )",
+              ")"
+            ],
+            "lineageTag": "4dddf623-974d-4a24-8554-e64ba2c213d3"
+          },
+          {
+            "name": "YTD Operating Exp",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Total Operating Cost],",
+              "    FILTER(",
+              "        ALL('Calender Amlan'[Date]),",
+              "        'Calender Amlan'[Date] <= MAX('Calender Amlan'[Date])",
+              "    )",
+              ")"
+            ],
+            "lineageTag": "4b7969a4-3a64-48a4-9915-19a2da356f82"
+          },
+          {
+            "name": "PY Operating Exp",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Total Operating Expense],",
+              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "4a3e1d5f-9f58-44e2-a7b0-e2217cb43864"
+          },
+          {
+            "name": "OE Variance%",
+            "expression": [
+              "",
+              "DIVIDE(",
+              "    [Total Operating Expense] - [PY Operating Exp],",
+              "    [PY Operating Exp]",
+              ")"
+            ],
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "d30c22ef-3f89-4cae-9ad2-e3b58eef17f6"
+          },
+          {
+            "name": "MoM Operating Exp",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Total Operating Expense],",
+              "    DATEADD('Calendar'[Date], -1, MONTH)",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "ef744c21-2dd6-4be2-b7ee-ffcf0443262b"
+          },
+          {
+            "name": "YTD Profit",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Net Profit],",
+              "    FILTER(",
+              "        ALL('Calender Amlan'[Date]),",
+              "        'Calender Amlan'[Date] <= MAX('Calender Amlan'[Date])",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "44e68d9a-5449-4b39-8954-c914e0734aca"
+          },
+          {
+            "name": "PY Profit",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Net Profit],",
+              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "415cb6d0-4234-46a4-bcf7-3adaa56e9b0c"
+          },
+          {
+            "name": "Profit Variance%",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "DIVIDE(",
+              "    [Net Profit] - [PY Profit],",
+              "    [PY Profit]",
+              ")"
+            ],
+            "lineageTag": "d62bfe98-e2bf-496b-b6f7-84ebf113b8cc"
+          },
+          {
+            "name": "MoM Profit",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Net Profit],",
+              "    DATEADD('Calender Amlan'[Date], -1, MONTH)",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "6bfcffa2-3b14-4ba3-8e41-3d1630bc5d56"
+          },
+          {
+            "name": "COGS",
+            "expression": "[Total Expense]-[Total Operating Expense]",
+            "formatString": "0",
+            "lineageTag": "a650a2ba-d4e1-4192-a4bc-bc8c7ba45ec7"
+          },
+          {
+            "name": "Gross Profit",
+            "expression": "[Total Revenue] - [COGS]",
+            "formatString": "0",
+            "lineageTag": "52308571-315d-4280-9af2-05415a98b8e5"
+          },
+          {
+            "name": "PM Operating Exp",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Total Operating Expense],",
+              "    DATEADD('Calender Amlan'[Date], -1, MONTH)",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "4c2d8899-ba84-45d8-a2f1-44716011ef78"
+          },
+          {
+            "name": "PM Profit",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Net Profit],",
+              "    DATEADD('Calender Amlan'[Date], -1, MONTH)",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "d51802af-5ac3-460d-a942-fbf96c696242"
+          },
+          {
+            "name": "Total Assets",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    SUM(JR_N[Net Balance]),",
+              "    FILTER(",
+              "        ALL(JR_N[Account Categories]),",
+              "        JR_N[Account Categories] IN {\"Assets\"}",
+              "    )",
+              ")"
+            ],
+            "lineageTag": "73a19493-0b48-4c6a-9c7a-a49874cd34c0"
+          },
+          {
+            "name": "Asset Turnover Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "    DIVIDE([Total Revenue], [Total Assets])"
+            ],
+            "lineageTag": "1046f297-945e-423b-b986-5fe9eca9f291"
+          },
+          {
+            "name": "Total Debt",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    SUM(JR_N[Net Balance]),",
+              "    FILTER(",
+              "        ALL(JR_N[Account Categories]),",
+              "        JR_N[Account Categories] IN {\"Liabilities\"}",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "08416715-7e30-4ad3-b88a-db4522c84009"
+          },
+          {
+            "name": "Total Equity",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    SUM(JR_N[Net Balance]),",
+              "    FILTER(",
+              "        ALL(JR_N[Account Categories]),",
+              "        JR_N[Account Categories] IN {\"Equity\"}",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "3b954f78-490a-44a1-b3a2-b3cbaef80233"
+          },
+          {
+            "name": "Debt-Equity Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "    DIVIDE([Total Debt], [Total Equity]",
+              "    )"
+            ],
+            "lineageTag": "fa56cc8e-afb4-4296-9b34-6d18f00fb851"
+          },
+          {
+            "name": "ROA Ratio",
+            "expression": [
+              "",
+              "DIVIDE([Net Profit], [Total Assets])"
+            ],
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "05eb9f46-2ff2-4d5b-98c6-16ca15e41a94"
+          },
+          {
+            "name": "ROE Ratio",
+            "expression": [
+              "",
+              "DIVIDE([Net Profit], [Total Equity])"
+            ],
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "a4222ba9-b838-4599-a1b4-fdbde5595db5"
+          },
+          {
+            "name": "Debt-Asset Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "    DIVIDE([Total Debt], [Total Assets])"
+            ],
+            "lineageTag": "d2d83ded-7d12-47bf-b11f-bd1904a81e23"
+          },
+          {
+            "name": "Debt-Earning Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "DIVIDE([Total Debt], [Gross Profit])"
+            ],
+            "lineageTag": "8e92156b-369b-4948-ab3d-ff5f49231e4d"
+          },
+          {
+            "name": "Total Interest Expense",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    SUM(JR_N[Net Balance]),",
+              "    FILTER(",
+              "        ALL(JR_N[Account Name]),",
+              "        JR_N[Account Name] IN {\"Utility expense\"}",
+              "    )",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "d72c45e7-e500-4dc5-bc43-74f82c5bfa2d"
+          },
+          {
+            "name": "Interest Coverage Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "DIVIDE([Gross Profit], [Total Interest Expense])"
+            ],
+            "lineageTag": "a9a5cd75-3c7b-4d0c-a534-e51dc535814c"
+          },
+          {
+            "name": "LY Asset Turnover Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Asset Turnover Ratio],",
+              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
+              ")"
+            ],
+            "lineageTag": "6661bf6f-c7ef-4fbd-9504-80dcc5c17f9d"
+          },
+          {
+            "name": "LY Debt-Equity Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Debt-Equity Ratio],",
+              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
+              ")"
+            ],
+            "lineageTag": "53b6b6e5-f289-477b-81ff-38a5ad19c3b6"
+          },
+          {
+            "name": "LY ROA Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [ROA Ratio],",
+              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
+              ")"
+            ],
+            "lineageTag": "c8a1a27c-7e6f-4799-abf3-3f21aa813170"
+          },
+          {
+            "name": "LY ROE Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [ROE Ratio],",
+              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
+              ")"
+            ],
+            "lineageTag": "d26968bb-5dd0-4940-b2bb-97f0e5185215"
+          },
+          {
+            "name": "LY Debt-Asset Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Debt-Asset Ratio],",
+              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
+              ")"
+            ],
+            "lineageTag": "72d3f0d4-d8d9-4db0-b22e-b10778d99681"
+          },
+          {
+            "name": "LY Debt-Earning Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Debt-Earning Ratio],",
+              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
+              ")"
+            ],
+            "lineageTag": "e1177c17-d46c-48cb-89d0-3ce5db69a02e"
+          },
+          {
+            "name": "LY Interest Coverage Ratio",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Interest Coverage Ratio],",
+              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
+              ")"
+            ],
+            "lineageTag": "a67ecb3f-d6af-45d3-982e-e0d3c88e7a49"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Alamgir Measures",
             "mode": "import",
             "source": {
               "expression": "Row(\"Column\", BLANK())",
@@ -2761,504 +3371,6 @@
                 "    #\"Changed Type\""
               ],
               "type": "m"
-            }
-          }
-        ]
-      },
-      {
-        "name": "Alamgir Measures",
-        "annotations": [
-          {
-            "name": "PBI_Id",
-            "value": "21701e88fa3347c7a702516215568255"
-          },
-          {
-            "name": "436ba87b-9c83-4389-a31b-ebd06a36be98",
-            "value": "{\"Expression\":\"\"}"
-          }
-        ],
-        "columns": [
-          {
-            "name": "Column",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "isDataTypeInferred": true,
-            "isNameInferred": true,
-            "lineageTag": "b25b439a-f1b1-47a2-b13b-97d5a4db65ea",
-            "sourceColumn": "[Column]",
-            "summarizeBy": "sum",
-            "type": "calculatedTableColumn"
-          }
-        ],
-        "lineageTag": "86e98f03-de43-4dc6-9af7-02dab15ea472",
-        "measures": [
-          {
-            "name": "Total Operating Expense",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isDecimal\":true}"
-              }
-            ],
-            "expression": "CALCULATE(SUM(JR_N[Net Balance]),FILTER(JR_N,JR_N[Sub Account]=\"Operating Expense\"))",
-            "formatString": "0",
-            "lineageTag": "5554f5c9-23d2-496b-ac82-aa818e48394f"
-          },
-          {
-            "name": "Total Operating Cost",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "expression": [
-              "",
-              "CALCULATE(",
-              "    SUM(JR_N[Dr Amount]) - SUM(JR_N[Cr Amount]),",
-              "    FILTER(",
-              "        ALL(JR_N[Sub Account]),",
-              "        JR_N[Sub Account] IN {\"Operating Expense\"}",
-              "    )",
-              ")"
-            ],
-            "lineageTag": "4dddf623-974d-4a24-8554-e64ba2c213d3"
-          },
-          {
-            "name": "YTD Operating Exp",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "expression": [
-              "",
-              "CALCULATE(",
-              "    [Total Operating Cost],",
-              "    FILTER(",
-              "        ALL('Calender Amlan'[Date]),",
-              "        'Calender Amlan'[Date] <= MAX('Calender Amlan'[Date])",
-              "    )",
-              ")"
-            ],
-            "lineageTag": "4b7969a4-3a64-48a4-9915-19a2da356f82"
-          },
-          {
-            "name": "PY Operating Exp",
-            "expression": [
-              "",
-              "CALCULATE(",
-              "    [Total Operating Expense],",
-              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
-              ")"
-            ],
-            "formatString": "0",
-            "lineageTag": "4a3e1d5f-9f58-44e2-a7b0-e2217cb43864"
-          },
-          {
-            "name": "OE Variance%",
-            "expression": [
-              "",
-              "DIVIDE(",
-              "    [Total Operating Expense] - [PY Operating Exp],",
-              "    [PY Operating Exp]",
-              ")"
-            ],
-            "formatString": "0.00%;-0.00%;0.00%",
-            "lineageTag": "d30c22ef-3f89-4cae-9ad2-e3b58eef17f6"
-          },
-          {
-            "name": "MoM Operating Exp",
-            "expression": [
-              "",
-              "CALCULATE(",
-              "    [Total Operating Expense],",
-              "    DATEADD('Calendar'[Date], -1, MONTH)",
-              ")"
-            ],
-            "formatString": "0",
-            "lineageTag": "ef744c21-2dd6-4be2-b7ee-ffcf0443262b"
-          },
-          {
-            "name": "YTD Profit",
-            "expression": [
-              "",
-              "CALCULATE(",
-              "    [Net Profit],",
-              "    FILTER(",
-              "        ALL('Calender Amlan'[Date]),",
-              "        'Calender Amlan'[Date] <= MAX('Calender Amlan'[Date])",
-              "    )",
-              ")"
-            ],
-            "formatString": "0",
-            "lineageTag": "44e68d9a-5449-4b39-8954-c914e0734aca"
-          },
-          {
-            "name": "PY Profit",
-            "expression": [
-              "",
-              "CALCULATE(",
-              "    [Net Profit],",
-              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
-              ")"
-            ],
-            "formatString": "0",
-            "lineageTag": "415cb6d0-4234-46a4-bcf7-3adaa56e9b0c"
-          },
-          {
-            "name": "Profit Variance%",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "expression": [
-              "",
-              "DIVIDE(",
-              "    [Net Profit] - [PY Profit],",
-              "    [PY Profit]",
-              ")"
-            ],
-            "lineageTag": "d62bfe98-e2bf-496b-b6f7-84ebf113b8cc"
-          },
-          {
-            "name": "MoM Profit",
-            "expression": [
-              "",
-              "CALCULATE(",
-              "    [Net Profit],",
-              "    DATEADD('Calender Amlan'[Date], -1, MONTH)",
-              ")"
-            ],
-            "formatString": "0",
-            "lineageTag": "6bfcffa2-3b14-4ba3-8e41-3d1630bc5d56"
-          },
-          {
-            "name": "COGS",
-            "expression": "[Total Expense]-[Total Operating Expense]",
-            "formatString": "0",
-            "lineageTag": "a650a2ba-d4e1-4192-a4bc-bc8c7ba45ec7"
-          },
-          {
-            "name": "Gross Profit",
-            "expression": "[Total Revenue] - [COGS]",
-            "formatString": "0",
-            "lineageTag": "52308571-315d-4280-9af2-05415a98b8e5"
-          },
-          {
-            "name": "PM Operating Exp",
-            "expression": [
-              "",
-              "CALCULATE(",
-              "    [Total Operating Expense],",
-              "    DATEADD('Calender Amlan'[Date], -1, MONTH)",
-              ")"
-            ],
-            "formatString": "0",
-            "lineageTag": "4c2d8899-ba84-45d8-a2f1-44716011ef78"
-          },
-          {
-            "name": "PM Profit",
-            "expression": [
-              "",
-              "CALCULATE(",
-              "    [Net Profit],",
-              "    DATEADD('Calender Amlan'[Date], -1, MONTH)",
-              ")"
-            ],
-            "formatString": "0",
-            "lineageTag": "d51802af-5ac3-460d-a942-fbf96c696242"
-          },
-          {
-            "name": "Total Assets",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "expression": [
-              "",
-              "CALCULATE(",
-              "    SUM(JR_N[Net Balance]),",
-              "    FILTER(",
-              "        ALL(JR_N[Account Categories]),",
-              "        JR_N[Account Categories] IN {\"Assets\"}",
-              "    )",
-              ")"
-            ],
-            "lineageTag": "73a19493-0b48-4c6a-9c7a-a49874cd34c0"
-          },
-          {
-            "name": "Asset Turnover Ratio",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "expression": [
-              "",
-              "    DIVIDE([Total Revenue], [Total Assets])"
-            ],
-            "lineageTag": "1046f297-945e-423b-b986-5fe9eca9f291"
-          },
-          {
-            "name": "Total Debt",
-            "expression": [
-              "",
-              "CALCULATE(",
-              "    SUM(JR_N[Net Balance]),",
-              "    FILTER(",
-              "        ALL(JR_N[Account Categories]),",
-              "        JR_N[Account Categories] IN {\"Liabilities\"}",
-              "    )",
-              ")"
-            ],
-            "formatString": "0",
-            "lineageTag": "08416715-7e30-4ad3-b88a-db4522c84009"
-          },
-          {
-            "name": "Total Equity",
-            "expression": [
-              "",
-              "CALCULATE(",
-              "    SUM(JR_N[Net Balance]),",
-              "    FILTER(",
-              "        ALL(JR_N[Account Categories]),",
-              "        JR_N[Account Categories] IN {\"Equity\"}",
-              "    )",
-              ")"
-            ],
-            "formatString": "0",
-            "lineageTag": "3b954f78-490a-44a1-b3a2-b3cbaef80233"
-          },
-          {
-            "name": "Debt-Equity Ratio",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "expression": [
-              "",
-              "    DIVIDE([Total Debt], [Total Equity]",
-              "    )"
-            ],
-            "lineageTag": "fa56cc8e-afb4-4296-9b34-6d18f00fb851"
-          },
-          {
-            "name": "ROA Ratio",
-            "expression": [
-              "",
-              "DIVIDE([Net Profit], [Total Assets])"
-            ],
-            "formatString": "0.00%;-0.00%;0.00%",
-            "lineageTag": "05eb9f46-2ff2-4d5b-98c6-16ca15e41a94"
-          },
-          {
-            "name": "ROE Ratio",
-            "expression": [
-              "",
-              "DIVIDE([Net Profit], [Total Equity])"
-            ],
-            "formatString": "0.00%;-0.00%;0.00%",
-            "lineageTag": "a4222ba9-b838-4599-a1b4-fdbde5595db5"
-          },
-          {
-            "name": "Debt-Asset Ratio",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "expression": [
-              "",
-              "    DIVIDE([Total Debt], [Total Assets])"
-            ],
-            "lineageTag": "d2d83ded-7d12-47bf-b11f-bd1904a81e23"
-          },
-          {
-            "name": "Debt-Earning Ratio",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "expression": [
-              "",
-              "DIVIDE([Total Debt], [Gross Profit])"
-            ],
-            "lineageTag": "8e92156b-369b-4948-ab3d-ff5f49231e4d"
-          },
-          {
-            "name": "Total Interest Expense",
-            "expression": [
-              "",
-              "CALCULATE(",
-              "    SUM(JR_N[Net Balance]),",
-              "    FILTER(",
-              "        ALL(JR_N[Account Name]),",
-              "        JR_N[Account Name] IN {\"Utility expense\"}",
-              "    )",
-              ")"
-            ],
-            "formatString": "0",
-            "lineageTag": "d72c45e7-e500-4dc5-bc43-74f82c5bfa2d"
-          },
-          {
-            "name": "Interest Coverage Ratio",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "expression": [
-              "",
-              "DIVIDE([Gross Profit], [Total Interest Expense])"
-            ],
-            "lineageTag": "a9a5cd75-3c7b-4d0c-a534-e51dc535814c"
-          },
-          {
-            "name": "LY Asset Turnover Ratio",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "expression": [
-              "",
-              "CALCULATE(",
-              "    [Asset Turnover Ratio],",
-              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
-              ")"
-            ],
-            "lineageTag": "6661bf6f-c7ef-4fbd-9504-80dcc5c17f9d"
-          },
-          {
-            "name": "LY Debt-Equity Ratio",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "expression": [
-              "",
-              "CALCULATE(",
-              "    [Debt-Equity Ratio],",
-              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
-              ")"
-            ],
-            "lineageTag": "53b6b6e5-f289-477b-81ff-38a5ad19c3b6"
-          },
-          {
-            "name": "LY ROA Ratio",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "expression": [
-              "",
-              "CALCULATE(",
-              "    [ROA Ratio],",
-              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
-              ")"
-            ],
-            "lineageTag": "c8a1a27c-7e6f-4799-abf3-3f21aa813170"
-          },
-          {
-            "name": "LY ROE Ratio",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "expression": [
-              "",
-              "CALCULATE(",
-              "    [ROE Ratio],",
-              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
-              ")"
-            ],
-            "lineageTag": "d26968bb-5dd0-4940-b2bb-97f0e5185215"
-          },
-          {
-            "name": "LY Debt-Asset Ratio",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "expression": [
-              "",
-              "CALCULATE(",
-              "    [Debt-Asset Ratio],",
-              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
-              ")"
-            ],
-            "lineageTag": "72d3f0d4-d8d9-4db0-b22e-b10778d99681"
-          },
-          {
-            "name": "LY Debt-Earning Ratio",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "expression": [
-              "",
-              "CALCULATE(",
-              "    [Debt-Earning Ratio],",
-              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
-              ")"
-            ],
-            "lineageTag": "e1177c17-d46c-48cb-89d0-3ce5db69a02e"
-          },
-          {
-            "name": "LY Interest Coverage Ratio",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
-            "expression": [
-              "",
-              "CALCULATE(",
-              "    [Interest Coverage Ratio],",
-              "    DATEADD('Calender Amlan'[Date], -1, YEAR)",
-              ")"
-            ],
-            "lineageTag": "a67ecb3f-d6af-45d3-982e-e0d3c88e7a49"
-          }
-        ],
-        "partitions": [
-          {
-            "name": "Alamgir Measures",
-            "mode": "import",
-            "source": {
-              "expression": "Row(\"Column\", BLANK())",
-              "type": "calculated"
             }
           }
         ]
