@@ -2864,12 +2864,6 @@
           },
           {
             "name": "OE Variance%",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
             "expression": [
               "",
               "DIVIDE(",
@@ -2877,6 +2871,7 @@
               "    [PY Operating Exp]",
               ")"
             ],
+            "formatString": "0.00%;-0.00%;0.00%",
             "lineageTag": "d30c22ef-3f89-4cae-9ad2-e3b58eef17f6"
           },
           {
@@ -3064,30 +3059,20 @@
           },
           {
             "name": "ROA Ratio",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
             "expression": [
               "",
               "DIVIDE([Net Profit], [Total Assets])"
             ],
+            "formatString": "0.00%;-0.00%;0.00%",
             "lineageTag": "05eb9f46-2ff2-4d5b-98c6-16ca15e41a94"
           },
           {
             "name": "ROE Ratio",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
             "expression": [
               "",
               "DIVIDE([Net Profit], [Total Equity])"
             ],
+            "formatString": "0.00%;-0.00%;0.00%",
             "lineageTag": "a4222ba9-b838-4599-a1b4-fdbde5595db5"
           },
           {
