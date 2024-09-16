@@ -570,10 +570,6 @@
             "expression": "DIVIDE([Current Assets],[Current Liabilities]) ",
             "formatString": "0.00%;-0.00%;0.00%",
             "lineageTag": "dd826be5-9762-49ac-a91a-ad83a338051e"
-          },
-          {
-            "name": "Measure",
-            "lineageTag": "43bcaec4-599c-474d-8c86-5e009c8d703f"
           }
         ],
         "partitions": [
@@ -2346,18 +2342,6 @@
             "expression": "[Fixed Assests]/[Total Balance]",
             "formatString": "0.00%;-0.00%;0.00%",
             "lineageTag": "e8f16b4f-caf9-4e75-a4ff-85d31f8bbc8c"
-          },
-          {
-            "name": "Inventory",
-            "expression": "CALCULATE(SUM(JR_N[Net Balance]),FILTER(JR_N,JR_N[Account Name]=\"Inventory\"))",
-            "formatString": "0.000",
-            "lineageTag": "9bfd5760-28d5-49ee-bdf0-4ef6830463bd"
-          },
-          {
-            "name": "Inventory %",
-            "expression": "[Inventory]/[Total Balance]",
-            "formatString": "0.00%;-0.00%;0.00%",
-            "lineageTag": "a0f971c9-4ed1-472c-ad8e-29123f01c93c"
           }
         ],
         "partitions": [
