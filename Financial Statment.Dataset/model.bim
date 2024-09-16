@@ -2241,30 +2241,27 @@
           },
           {
             "name": "Gross Profit Margin",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
             "expression": "DIVIDE([Gross Profit],[Total Revenue])",
+            "formatString": "0.00%;-0.00%;0.00%",
             "lineageTag": "b9f516aa-737d-498e-b849-ad1993affb84"
           },
           {
             "name": "Net Profit Margin",
-            "annotations": [
-              {
-                "name": "PBI_FormatHint",
-                "value": "{\"isGeneralNumber\":true}"
-              }
-            ],
             "expression": "DIVIDE([Net Profit],[Total Revenue])",
+            "formatString": "0.00%;-0.00%;0.00%",
             "lineageTag": "256fffd3-c331-472a-96b5-4e9ef9f157d1"
           },
           {
             "name": "Operating Profit Margin",
-            "expression": "DIVIDE(operating)",
+            "expression": "DIVIDE([Total Operating Cost],[Total Revenue])",
+            "formatString": "0.00%;-0.00%;0.00%",
             "lineageTag": "4f0de6e2-6791-42a8-bd6e-d763f3f304cc"
+          },
+          {
+            "name": "Net Cashflow",
+            "expression": "[cash inflow] - [cash outflow]",
+            "formatString": "0",
+            "lineageTag": "12046105-8b0a-4b6a-a0b1-6f4f154750dd"
           }
         ],
         "partitions": [
